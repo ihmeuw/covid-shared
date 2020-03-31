@@ -92,6 +92,9 @@ class RunMetadata(_Metadata):
         self['path'] = str(run_dir)
         self['start_time'] = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
+    def __getitem__(self, metadata_key: str):
+        return self._metadata[metadata_key]
+
     def __setitem__(self, metadata_key: str, value: Any):
         if metadata_key in self:
             # This feels like a weird use of KeyError.  AttributeError also
