@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 import time
 import typing
-from typing import Any, Callable, Union
+from typing import Any, Callable, Mapping, Union
 
 import click
 from loguru import logger
@@ -72,6 +72,62 @@ class _Metadata:
     def dump(self):
         """Dumps all metadata to disk."""
         pass
+
+
+class Metadata:
+    """Base metadata class.  Looks and feels like a dict with a limited API.
+
+    This class is meant for recording metadata for applications and run
+    environments and forwarding that information across pipeline stages.
+
+    """
+
+    def __init__(self, *args, **kwargs):
+        self._metadata = {}
+
+    def update(self, metadata_update: Mapping):
+        # Inefficient, by centralizes error handling.
+        for key, value in metadata_update.items():
+            self[key] = value
+
+    def to_dict(self):
+        return self._metadata.copy()
+
+    def __getitem__(self, metadata_key: str):
+        return self._metadata[metadata_key]
+
+    def __setitem__(self, metadata_key: str, value: Any):
+        if metadata_key in self:
+            # This feels like a weird use of KeyError.  AttributeError also
+            # feels wrong.  Maybe write a custom error later.
+            raise KeyError(f'Metadata key {metadata_key} has already been set.')
+        self._metadata[metadata_key] = value
+
+    def __contains__(self, metadata_key: str):
+        return metadata_key in self._metadata
+
+    def dump(self, metadata_file: typing.TextIO):
+        """Dumps all metadata to disk."""
+        raise NotImplementedError('Base metadata class should not be used to '
+                                  'dump information to a file.')
+
+
+class RunMetadata(Metadata):
+    """Metadata class meant specifically for application runners.
+
+    Silently records profiling and provenance information.
+
+    """
+
+    def __init__(self, *args, **kwargs):
+        self._start = time.time()
+        super().__init__(*args, **kwargs)
+        self['start_time'] = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+
+    def dump(self, metadata_file: typing.TextIO):
+        self._metadata['run_time'] = f"{time.time() - self._start:.2f} seconds"
+        yaml.dump(self._metadata, metadata_file)
+
 
 
 class RunMetadata(_Metadata):
