@@ -1,4 +1,4 @@
-covid-input-shared
-===============
+covid-shared
+============
 
 Shared utilities for covid data processing.

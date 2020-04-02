@@ -12,7 +12,7 @@ import click
 from loguru import logger
 import yaml
 
-from covid_input_shared import paths
+from covid_shared import paths
 
 
 DEFAULT_LOG_MESSAGING_FORMAT = ('<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | '
