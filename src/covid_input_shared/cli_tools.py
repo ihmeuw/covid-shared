@@ -2,10 +2,11 @@ from bdb import BdbQuit
 from datetime import datetime
 import functools
 from pathlib import Path
+from pprint import pformat
 import sys
 import time
 import typing
-from typing import Any, Callable, Mapping, Union
+from typing import Any, Callable, Dict, Mapping, Union
 
 import click
 from loguru import logger
@@ -74,11 +75,26 @@ class _Metadata:
         pass
 
 
+class YamlIOMixin:
+    """Mixin class for reading and writing data from yaml files."""
+
+    @staticmethod
+    def _load(in_file: typing.TextIO) -> Dict:
+        return yaml.load(in_file)
+
+    @staticmethod
+    def _write(data: Dict[str, Any], out_file: typing.TextIO):
+        yaml.dump(data, out_file)
+
+
 class Metadata:
     """Base metadata class.  Looks and feels like a dict with a limited API.
 
     This class is meant for recording metadata for applications and run
     environments and forwarding that information across pipeline stages.
+
+    This class provides the interface for file I/O, but does not implement
+    it.
 
     """
 
@@ -86,12 +102,20 @@ class Metadata:
         self._metadata = {}
 
     def update(self, metadata_update: Mapping):
+        """Dictionary style update of metadata."""
         # Inefficient, by centralizes error handling.
         for key, value in metadata_update.items():
             self[key] = value
 
     def to_dict(self):
+        """Give back a dict version of the metadata."""
         return self._metadata.copy()
+
+    @classmethod
+    def from_file(cls, metadata_file: typing.TextIO):
+        """Loads metadata from disk."""
+        logger.warning('Base metadata information cannot be constructed from a file. Returning empty metadata.')
+        return cls()
 
     def __getitem__(self, metadata_key: str):
         return self._metadata[metadata_key]
@@ -107,12 +131,12 @@ class Metadata:
         return metadata_key in self._metadata
 
     def dump(self, metadata_file: typing.TextIO):
-        """Dumps all metadata to disk."""
-        raise NotImplementedError('Base metadata class should not be used to '
-                                  'dump information to a file.')
+        """Interface to dump metadata to disk."""
+        logger.warning('Base metadata class should not be used to dump information to a file.')
+        pass
 
 
-class RunMetadata(Metadata):
+class RunMetadata(Metadata, YamlIOMixin):
     """Metadata class meant specifically for application runners.
 
     Silently records profiling and provenance information.
@@ -124,9 +148,26 @@ class RunMetadata(Metadata):
         super().__init__(*args, **kwargs)
         self['start_time'] = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
+    @classmethod
+    def from_file(cls, metadata_file: typing.TextIO):
+        metadata_dict = cls._load(metadata_file)
+        metadata = cls()
+        metadata.update(metadata_dict)
+        return metadata
+
     def dump(self, metadata_file: typing.TextIO):
         self._metadata['run_time'] = f"{time.time() - self._start:.2f} seconds"
-        yaml.dump(self._metadata, metadata_file)
+        try:
+            self._write(self._metadata, metadata_file)
+        except FileNotFoundError as e:
+            logger.warning(f'Output directory for {metadata_file.name} does not exist. Dumping metadata to console.')
+            click.echo()
+
+
+
+def record_run_metadata(app_entry_point, metadata_class=RunMetadata):
+    run_metadata = RunMetadata()
+
 
 
 
