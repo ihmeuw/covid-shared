@@ -1,5 +1,5 @@
 include README.md
 include Makefile
 
-recursive-include src/covid_input_etl *.py
+recursive-include src/covid_shared *.py
 recursive-include tests *.py
