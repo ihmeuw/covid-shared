@@ -172,9 +172,26 @@ def pass_run_metadata(run_metadata=RunMetadata()):
     return _pass_run_metadata
 
 
-def handle_exceptions(func: types.FunctionType, logger_: Any, with_debugger: bool,
-                      app_metadata: Metadata = Metadata()) -> Callable:
-    """Drops a user into an interactive debugger if func raises an error."""
+def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: bool,
+                        app_metadata: Metadata = Metadata()) -> Callable:
+    """Monitors an application for errors and injects a metadata container.
+
+    Catches records them if they occur. Can also be configured to drop
+    a user into an interactive debugger on failure.
+
+    Parameters
+    ----------
+    func
+        The application function to monitor.
+    logger_
+        The application logger
+    with_debugger
+        Whether the monitor drops a user into a pdb session on application
+        failure.
+    app_metadata
+        Record for application metadata.
+
+    """
 
     @functools.wraps(func)
     def _wrapped(*args, **kwargs):
@@ -235,6 +252,17 @@ def get_run_directory(output_root: Union[str, Path]) -> Path:
     run_version = max(today_runs) + 1 if today_runs else 1
     datetime_dir = output_root / f'{launch_time}.{run_version}'
     return datetime_dir
+
+
+def get_last_stage_directory(last_stage_version: str, last_stage_directory: Union[str, Path],
+                             last_stage_root: Path = None) -> Path:
+    """Get the directory containing the results of the last pipeline stage."""
+    if last_stage_directory:
+        return Path(last_stage_directory)
+    elif last_stage_root is None:
+        raise ValueError('No previous stage results found.')
+    else:
+        return last_stage_root / last_stage_version
 
 
 def setup_directory_structure(output_root: Union[str, Path]):
