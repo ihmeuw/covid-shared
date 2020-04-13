@@ -1,5 +1,6 @@
 """Manages all path metadata."""
 from pathlib import Path
+from datetime import datetime
 
 # Input data paths
 JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
@@ -18,12 +19,27 @@ MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
 METADATA_FILE_NAME = 'metadata.yaml'
 BEST_LINK = 'best'
 LATEST_LINK = 'latest'
+PRODUCTION_RUN = 'production-runs'
 
 JOHNS_HOPKINS_OUTPUT_DIR_NAME = 'johns_hopkins_repo'
 ITALY_OUTPUT_DIR_NAME = 'italy_repo'
 MOBILITY_OUTPUT_DIR_NAME = 'mobility_data'
 ONEDRIVE_OUTPUT_DIR_NAME = 'covid_onedrive'
 
+
+def latest_production_snapshot_path():
+    return _latest_prod_path(SNAPSHOT_ROOT)
+
+
+def latest_production_etl_path():
+    return _latest_prod_path(MODEL_INPUTS_ROOT)
+
+
+def _latest_prod_path(prefix: Path):
+    prod_run_dir = prefix / PRODUCTION_RUN
+    prod_runs = [d for d in prod_run_dir.iterdir()]
+    sorted_runs = list(sorted(prod_runs, key=lambda p: datetime.strptime(p.stem, '%Y_%m_%d')))
+    return sorted_runs[-1]
 
 
 #################
