@@ -15,7 +15,7 @@ def wget(url: str, output_path: Union[str, Path]):
         Where we'll save the output to.
 
     """
-    result = subprocess.run(shlex.split(f'wget -O {output_path} {url}'), check=True)
+    subprocess.run(shlex.split(f'wget -O {output_path} {url}'), check=True)
 
 
 def unzip_and_delete_archive(archive_path: Union[str, Path], output_path: Union[str, Path]):
