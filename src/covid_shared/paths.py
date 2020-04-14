@@ -2,11 +2,13 @@
 from pathlib import Path
 from datetime import datetime
 
-
 # Input data paths
 JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
 ITALY_REPO = 'https://github.com/pcm-dpc/COVID-19/archive/master.zip'
+DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
 ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
+CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
+
 
 # Shared paths
 RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
@@ -21,6 +23,7 @@ PRODUCTION_RUN = 'production-runs'
 
 JOHNS_HOPKINS_OUTPUT_DIR_NAME = 'johns_hopkins_repo'
 ITALY_OUTPUT_DIR_NAME = 'italy_repo'
+MOBILITY_OUTPUT_DIR_NAME = 'mobility_data'
 ONEDRIVE_OUTPUT_DIR_NAME = 'covid_onedrive'
 
 
