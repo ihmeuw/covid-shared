@@ -7,7 +7,7 @@ python:
 os: linux
 
 install:
-- pip install .[test,docs]
+- pip install .[dev]
 
 script:
 - pytest
