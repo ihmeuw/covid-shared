@@ -1,0 +1,24 @@
+language: python
+python:
+- 3.6
+- 3.7
+- 3.8
+
+os: linux
+
+install:
+- pip install .[test,docs]
+
+script:
+- make doctest -C docs/
+- pytest
+
+deploy:
+  provider: pypi
+  username: " __token__"
+  password:
+    secure: WGxwadDRj0nla/PcYouWyLJaWThADIPKZQqtkj/tbths5VPayF7j+x1NQ8SR0i179aMKtyDr5aQJ7XOg9cyRxxIsjsYQD3HXD06/n+322/Fsl+VoWzDH31wQIXn6CY1/glJKNe2n9kCewgfuAE36UnI+rAapOTYR3VeVOX0LRu8fhMAm6rc94EluLXSfr1FpnPMUuF5FNpxQ+fE+97l29eLrClPdGq1HI9vLjC8CvtPqsQT7Yr47pRniOqzWCF0oBBgQjlssH6mMSviJ5l5b1Rssp8OgqvaYAZi/TLP2uF4TI2aMFg3PtahTAr/bsBiX/gqf9j1Mn1leibKHmllNt5xk8wuRcuXn8JZimD+6HP6WwDg/h7tTgVAAn+dVwIvhfD1oNPM8v+fmRZ0oaasWpW8TJvV+oE8QqWx33ATORYKae6aQtXGd8F/UMOzQt/OKEoJwT5dtJaFaz12wJtoC1ch3tBT30NqGALx/aQIltdxv6xcLO4ZCNs5F137ItYI/KUO6NdWQ33coRFRNg7VMu4CLqMZ0LAJGf3DFk/X9A0bm+ef1E0R7vjXD8h8lp+pXQXSBzew4mAFoieWsLoHQ8twWmzQzX53AqGfcRRN9qHI2L89fUGff852aAxoajXNO3L+m84VhANkOAMyPOyZabnJOzEox+HDpvVH04McZFAk=
+  distributions: sdist bdist_wheel
+  on:
+    repo: ihmeuw/covid-shared
+    tags: true
