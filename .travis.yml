@@ -21,3 +21,4 @@ deploy:
   on:
     repo: ihmeuw/covid-shared
     tags: true
+    branch: master
