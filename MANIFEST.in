@@ -1,4 +1,6 @@
+include CHANGELOG.rst
 include README.rst
+include LICENSE.txt
 include Makefile
 
 recursive-include src/covid_shared *.py
