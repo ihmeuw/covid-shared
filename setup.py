@@ -10,7 +10,7 @@ if __name__ == "__main__":
     with open(os.path.join(src_dir, "covid_shared", "__about__.py")) as f:
         exec(f.read(), about)
 
-    with open(os.path.join(base_dir, "README.md")) as f:
+    with open(os.path.join(base_dir, "README.rst")) as f:
         long_description = f.read()
 
     install_requirements = [
