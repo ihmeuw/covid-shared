@@ -163,6 +163,7 @@ def pass_run_metadata(run_metadata=RunMetadata()):
         @functools.wraps(app_entry_point)
         def _wrapped(*args, **kwargs):
             # Record arguments for the run and inject the metadata.
+            run_metadata['tool_name'] = f'{app_entry_point.__module__}:{app_entry_point.__name__}'
             run_metadata['run_arguments'] = get_function_full_argument_mapping(app_entry_point,
                                                                                run_metadata, *args, **kwargs)
             return app_entry_point(run_metadata, *args, **kwargs)
@@ -198,6 +199,7 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
         result = None
         try:
             # Record arguments for the run and inject the metadata
+            app_metadata['main_function'] = f'{func.__module__}:{func.__name__}'
             app_metadata['run_arguments'] = get_function_full_argument_mapping(func, app_metadata,
                                                                                *args, **kwargs)
             result = func(app_metadata, *args, **kwargs)
