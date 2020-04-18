@@ -203,6 +203,7 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
             app_metadata['run_arguments'] = get_function_full_argument_mapping(func, app_metadata,
                                                                                *args, **kwargs)
             result = func(app_metadata, *args, **kwargs)
+            app_metadata['success'] = True
         except (BdbQuit, KeyboardInterrupt):
             app_metadata['success'] = False
             app_metadata['error_info'] = 'User interrupt.'
