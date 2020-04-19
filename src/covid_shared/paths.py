@@ -6,6 +6,7 @@ from datetime import datetime
 JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
 ITALY_REPO = 'https://github.com/pcm-dpc/COVID-19/archive/master.zip'
 DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
+NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
 ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
 CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 
