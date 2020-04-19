@@ -1,3 +1,8 @@
+**1.0.4 - 04/18/2020**
+
+ - Add NY times repo path.
+ - Add success flag to metadata when successful.
+
 **1.0.3 - 04/16/2020**
 
  - Add tool tracking to metadata.
