@@ -1,3 +1,7 @@
+**1.0.5 - 04/18/2020**
+
+ - Add NY times output directory name.
+
 **1.0.4 - 04/18/2020**
 
  - Add NY times repo path.
