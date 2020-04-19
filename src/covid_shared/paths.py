@@ -24,6 +24,7 @@ PRODUCTION_RUN = 'production-runs'
 
 JOHNS_HOPKINS_OUTPUT_DIR_NAME = 'johns_hopkins_repo'
 ITALY_OUTPUT_DIR_NAME = 'italy_repo'
+NY_TIMES_OUTPUT_DIR_NAME = 'ny_times_repo'
 MOBILITY_OUTPUT_DIR_NAME = 'mobility_data'
 ONEDRIVE_OUTPUT_DIR_NAME = 'covid_onedrive'
 
