@@ -15,6 +15,7 @@ from loguru import logger
 import yaml
 
 from covid_shared import paths
+from covid_shared.shell_tools import mkdir
 
 
 DEFAULT_LOG_MESSAGING_FORMAT = ('<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | '
@@ -279,7 +280,7 @@ def setup_directory_structure(output_root: Union[str, Path]):
     for link in [paths.BEST_LINK, paths.LATEST_LINK]:
         link_path = output_root / link
         if not link_path.is_symlink() and not link_path.exists():
-            link_path.mkdir(paths.DIRECTORY_PERMISSIONS)
+            mkdir(link_path)
 
 
 def mark_best(run_directory: Union[str, Path]):
