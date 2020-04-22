@@ -1,3 +1,8 @@
+**1.0.6 - 04/22/2020**
+
+ - Bugfix in symlink handling.
+ - Add general method to create dirs with reasonable permissions.
+
 **1.0.5 - 04/18/2020**
 
  - Add NY times output directory name.
