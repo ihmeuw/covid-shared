@@ -300,6 +300,8 @@ def move_link(symlink_file: Path, link_target: Path):
     """Removes an old symlink and links it to something else."""
     if symlink_file.is_symlink():
         symlink_file.unlink()
-    else:  # We have set this up be a directory at the start.
+    elif symlink_file.is_dir():  # We have set this up be a directory at the start.
         symlink_file.rmdir()
+    elif symlink_file.exists(): # A file exists but isn't a symlink or a directory
+        raise ValueError(f'{str(symlink_file)} is not a symlink or a directory')
     symlink_file.symlink_to(link_target, target_is_directory=True)
