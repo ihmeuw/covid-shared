@@ -8,7 +8,7 @@ import time
 import traceback
 import types
 import typing
-from typing import Any, Callable, Dict, Mapping, Union
+from typing import Any, Callable, Dict, Mapping, Union, List
 
 import click
 from loguru import logger
@@ -27,6 +27,20 @@ LOG_FORMATS = {
     1: ("INFO", DEFAULT_LOG_MESSAGING_FORMAT),
     2: ("DEBUG", DEFAULT_LOG_MESSAGING_FORMAT),
 }
+
+
+def _remove_secrets(dictionary: Dict, secrets: List[str]) -> Dict:
+    """
+    Remove secrets from a nested Dict
+    """
+    if secrets:
+        for key, value in dictionary.items():
+            if isinstance(value, dict):
+                dictionary[key] = _remove_secrets(value, secrets)
+            else:
+                if value in secrets:
+                    dictionary[key] = "***censored***"
+    return dictionary
 
 
 def add_logging_sink(sink: typing.TextIO, verbose: int, colorize: bool = False, serialize: bool = False):
@@ -137,14 +151,14 @@ class RunMetadata(Metadata, YamlIOMixin):
         """Loads a metadata file from disk and stores it in the key."""
         self._metadata[metadata_key] = yaml.load(metadata_file)
 
-    def dump(self, metadata_file_path: Union[str, Path]):
+    def dump(self, metadata_file_path: Union[str, Path], secrets: List = None):
         self._metadata['run_time'] = f"{time.time() - self._start:.2f} seconds"
         try:
             with Path(metadata_file_path).open('w') as metadata_file:
-                self._write(self._metadata, metadata_file)
+                self._write(_remove_secrets(self._metadata, secrets), metadata_file)
         except FileNotFoundError as e:
             logger.warning(f'Output directory for {metadata_file.name} does not exist. Dumping metadata to console.')
-            click.echo(pformat(self._metadata))
+            click.echo(pformat(_remove_secrets(self._metadata, secrets)))
 
 
 def pass_run_metadata(run_metadata=RunMetadata()):
