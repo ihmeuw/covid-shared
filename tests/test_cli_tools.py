@@ -22,7 +22,7 @@ def mock_datetime(mocker):
 
 @pytest.fixture()
 def empty_run_dir_root(tmp_path: Path):
-    cli_tools.setup_directory_structure(tmp_path)
+    cli_tools.setup_directory_structure(tmp_path, with_production=True)
     return tmp_path
 
 
@@ -45,7 +45,7 @@ def test_get_run_directory(tmp_path: Path, mock_datetime):
 
 
 def test_setup_directory_structure_no_production(tmp_path: Path):
-    cli_tools.setup_directory_structure(tmp_path, with_production=False)
+    cli_tools.setup_directory_structure(tmp_path)
     assert tmp_path.exists()
     for subdir in [paths.BEST_LINK, paths.LATEST_LINK]:
         assert (tmp_path / subdir).exists()
@@ -56,7 +56,7 @@ def test_setup_directory_structure_no_production(tmp_path: Path):
 
 
 def test_setup_directory_structure(tmp_path: Path):
-    cli_tools.setup_directory_structure(tmp_path)
+    cli_tools.setup_directory_structure(tmp_path, with_production=True)
     assert tmp_path.exists()
     for subdir in [paths.BEST_LINK, paths.LATEST_LINK, paths.PRODUCTION_RUN]:
         assert (tmp_path / subdir).exists()

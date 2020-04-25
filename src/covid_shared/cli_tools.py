@@ -269,7 +269,7 @@ def get_last_stage_directory(last_stage_version: str, last_stage_directory: Unio
         return last_stage_root / last_stage_version
 
 
-def setup_directory_structure(output_root: Union[str, Path], with_production: bool = True):
+def setup_directory_structure(output_root: Union[str, Path], with_production: bool = False):
     """Sets up a best and latest directory for results versioning.
 
     output_root
