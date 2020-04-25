@@ -241,12 +241,12 @@ def get_function_full_argument_mapping(func: types.FunctionType, *args, **kwargs
 
 
 def get_run_directory(output_root: Union[str, Path]) -> Path:
-    """Gets a path to a datetime directory for a new snapshot.
+    """Gets a path to a datetime directory for a new output.
 
     Parameters
     ----------
     output_root
-        The root directory for all snapshots.
+        The root directory for all outputs.
 
     """
     output_root = Path(output_root).resolve()
@@ -273,7 +273,7 @@ def setup_directory_structure(output_root: Union[str, Path], with_production: bo
     """Sets up a best and latest directory for results versioning.
 
     output_root
-        The root directory for all snapshots.
+        The root directory for all outputs.
 
     """
     output_root = Path(output_root).resolve()
@@ -288,12 +288,12 @@ def setup_directory_structure(output_root: Union[str, Path], with_production: bo
 
 
 def mark_best(run_directory: Union[str, Path]):
-    """Marks an output directory as the best source of raw input data."""
+    """Marks an output directory as the best source of data."""
     mark_best_explicit(run_directory, run_directory.parent)
 
 
 def mark_latest(run_directory: Union[str, Path]):
-    """Marks an output directory as the best source of raw input data."""
+    """Marks an output directory as the latest source of data."""
     mark_latest_explicit(run_directory, run_directory.parent)
 
 
@@ -320,7 +320,7 @@ def mark_latest_explicit(run_directory: Union[str, Path], version_root: Union[st
 
 
 def mark_explicit(run_directory: Union[str, Path], version_root: Union[str, Path], link_name: Union[str, Path]) -> None:
-    """Makes or moves a link name to the run directory in a versioning root."""
+    """Makes or moves a link name to the run directory in a version root."""
     run_directory = Path(run_directory).resolve()
     version_root = Path(version_root).resolve()
     link_file = version_root / link_name
