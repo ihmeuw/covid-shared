@@ -83,7 +83,7 @@ def test_setup_directory_structure_noop(empty_run_dir_root: Path):
 def test_move_link_dir(run_dir_root: Path):
     link_dir = (run_dir_root / 'test_link_dir')
     link_dir.mkdir()
-    target_dir = list(run_dir_root.iterdir())[5]
+    target_dir = _get_random_run_dir(run_dir_root)
     cli_tools.move_link(link_dir, target_dir)
     assert link_dir.exists()
     assert link_dir.is_dir()
