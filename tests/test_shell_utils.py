@@ -1,78 +1,55 @@
-import os
 from pathlib import Path
+
 import pytest
-import shutil
-from subprocess import Popen, PIPE
-from typing import Dict, List, Optional
 
 from covid_shared.shell_tools import mkdir
 
 
-@pytest.fixture
-def hostname_init():
-    return {
-        'good': [
-            'user@int-uge-archive-p006',
-        ],
-        'bad': [
-            'user@gen-uge-submit-p01',
-            '-submit-',
-            'user@gen-uge-submit-p02',
-        ]
-    }
-
-
-@pytest.fixture(params=[({}, None),
-                        ({'parents': False}, None),
-                        ({'parents': True}, None),
-                        ({'exists_ok': False, 'parents': True}, None),
-                        ({'umask': 0o013, 'parents': True}, 'drwxrw-r--'),
-                        ({'parents': True}, None),
-                        ({'exists_ok': True, 'parents': True}, None)])
-def permissions_params(request):
+@pytest.fixture(params=range(0o700, 0o1000, 3))
+def mode(request):
     return request.param
 
 
-def test_mkdir_set_permissions(permissions_params: List) -> None:
-    # Get prior umask value
-    prior_umask = os.umask(0)
-    os.umask(prior_umask)
+@pytest.fixture(params=[True, False])
+def parents(request):
+    return request.param
 
-    cwd = Path(os.getcwd())
-    parent_dir_name = 'parent_dir'
-    child_dir_name = 'child_dir'
 
-    parent_path = cwd / parent_dir_name
-    path = parent_path / child_dir_name
+def test_mkdir_no_args(mode: int, tmp_path: Path):
+    tmp_path.rmdir()
+    assert not tmp_path.exists()
+    mkdir(tmp_path, mode=mode)
+    assert tmp_path.exists()
+    assert oct(tmp_path.stat().st_mode)[-3:] == oct(mode)[-3:]
 
-    mkdir_params: Dict = permissions_params[0]
-    permissions: Optional[str] = permissions_params[1] if permissions_params[1] else 'drwxrwxr-x'
 
-    def test_mkdir_permissions():
-        mkdir(path, **mkdir_params)
-        proc = Popen(f"ls -l | grep '{parent_dir_name}' | grep '{permissions}'", shell=True, stdout=PIPE, )
-        assert proc.communicate()[0], "Parent directory has incorrect permissions"
-        proc = Popen(f"ls -l '{parent_dir_name}' | grep '{child_dir_name}' | grep '{permissions}'",
-                     shell=True, stdout=PIPE, )
-        assert proc.communicate()[0], "Child directory has incorrect permissions"
+def test_mkdir_no_parents(mode: int, tmp_path: Path):
+    tmp_path.rmdir()
+    assert not tmp_path.exists()
 
-    try:
-        if 'parents' not in mkdir_params or not mkdir_params['parents']:
-            with pytest.raises(FileNotFoundError):
-                mkdir(path, **mkdir_params)
-        else:
-            test_mkdir_permissions()
+    child_dir = tmp_path / 'child'
+    with pytest.raises(FileNotFoundError):
+        mkdir(child_dir, mode)
 
-            # Setting new umask doesn't change permissions of existing directories if they exist
-            mkdir_params['umask'] = 0o003
-            if 'exists_ok' not in mkdir_params or not mkdir_params['exists_ok']:
-                with pytest.raises(FileExistsError):
-                    mkdir(path, **mkdir_params)
-            else:
-                test_mkdir_permissions()
 
-    finally:
-        if parent_path.exists():
-            shutil.rmtree(parent_path)
+def test_mkdir_parents(mode: int, tmp_path: Path):
+    tmp_path.rmdir()
+    assert not tmp_path.exists()
 
-        assert prior_umask == os.umask(prior_umask), "umask was changed and not reset"
+    child_dir = tmp_path / 'child'
+    mkdir(child_dir, mode, parents=True)
+    assert tmp_path.exists()
+    assert oct(tmp_path.stat().st_mode)[-3:] == oct(mode)[-3:]
+    assert child_dir.exists()
+    assert oct(child_dir.stat().st_mode)[-3:] == oct(mode)[-3:]
+
+
+def test_mkdir_exists(mode: int, parents: bool, tmp_path: Path):
+    assert tmp_path.exists()
+    perms = oct(tmp_path.stat().st_mode)[-3:]
+
+    with pytest.raises(FileExistsError):
+        mkdir(tmp_path, mode, parents=parents)
+
+    mkdir(tmp_path, mode, parents=parents, exists_ok=True)
+    assert oct(tmp_path.stat().st_mode)[-3:] == perms

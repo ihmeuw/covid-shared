@@ -1,5 +1,5 @@
 from bdb import BdbQuit
-from datetime import datetime
+import datetime
 import functools
 from pathlib import Path
 from pprint import pformat
@@ -132,7 +132,7 @@ class RunMetadata(Metadata, YamlIOMixin):
     def __init__(self, *args, **kwargs):
         self._start = time.time()
         super().__init__(*args, **kwargs)
-        self['start_time'] = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+        self['start_time'] = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
     def update_from_file(self, metadata_key: str, metadata_file: typing.TextIO):
         """Loads a metadata file from disk and stores it in the key."""
@@ -250,11 +250,11 @@ def get_run_directory(output_root: Union[str, Path]) -> Path:
 
     """
     output_root = Path(output_root).resolve()
-    launch_time = datetime.now().strftime("%Y_%m_%d")
+    launch_time = datetime.datetime.now().strftime("%Y_%m_%d")
     today_runs = [int(run_dir.name.split('.')[1]) for run_dir in output_root.iterdir() if
                   run_dir.name.startswith(launch_time)]
     run_version = max(today_runs) + 1 if today_runs else 1
-    datetime_dir = output_root / f'{launch_time}.{run_version}'
+    datetime_dir = output_root / f'{launch_time}.{run_version:0>2}'
     return datetime_dir
 
 
@@ -269,7 +269,7 @@ def get_last_stage_directory(last_stage_version: str, last_stage_directory: Unio
         return last_stage_root / last_stage_version
 
 
-def setup_directory_structure(output_root: Union[str, Path]):
+def setup_directory_structure(output_root: Union[str, Path], with_production: bool = True):
     """Sets up a best and latest directory for results versioning.
 
     output_root
@@ -282,19 +282,49 @@ def setup_directory_structure(output_root: Union[str, Path]):
         if not link_path.is_symlink() and not link_path.exists():
             mkdir(link_path)
 
+    if with_production:
+        production_dir = output_root / paths.PRODUCTION_RUN
+        mkdir(production_dir, exists_ok=True)
+
 
 def mark_best(run_directory: Union[str, Path]):
     """Marks an output directory as the best source of raw input data."""
-    run_directory = Path(run_directory).resolve()
-    best_link = run_directory.parent / paths.BEST_LINK
-    move_link(best_link, run_directory)
+    mark_best_explicit(run_directory, run_directory.parent)
 
 
 def mark_latest(run_directory: Union[str, Path]):
     """Marks an output directory as the best source of raw input data."""
+    mark_latest_explicit(run_directory, run_directory.parent)
+
+
+def mark_production(run_directory: Union[str, Path], date: str = None):
+    """Marks a run as a production run."""
+    mark_production_explicit(run_directory, run_directory.parent / paths.PRODUCTION_RUN, date)
+
+
+def mark_production_explicit(run_directory: Union[str, Path], version_root: Union[str, Path], date: str = None) -> None:
+    """Marks a run as a production run within a specific version root."""
+    if date is None:
+        date = datetime.datetime.now().strftime('%Y_%m_%d')
+    mark_explicit(run_directory, version_root, date)
+
+
+def mark_best_explicit(run_directory: Union[str, Path], version_root: Union[str, Path]) -> None:
+    """Marks a directory best within a specific version root."""
+    mark_explicit(run_directory, version_root, paths.BEST_LINK)
+
+
+def mark_latest_explicit(run_directory: Union[str, Path], version_root: Union[str, Path]) -> None:
+    """Marks a directory latest within a specific version root."""
+    mark_explicit(run_directory, version_root, paths.LATEST_LINK)
+
+
+def mark_explicit(run_directory: Union[str, Path], version_root: Union[str, Path], link_name: Union[str, Path]) -> None:
+    """Makes or moves a link name to the run directory in a versioning root."""
     run_directory = Path(run_directory).resolve()
-    latest_link = run_directory.parent / paths.LATEST_LINK
-    move_link(latest_link, run_directory)
+    version_root = Path(version_root).resolve()
+    link_file = version_root / link_name
+    move_link(link_file, run_directory)
 
 
 def move_link(symlink_file: Path, link_target: Path):
@@ -303,6 +333,6 @@ def move_link(symlink_file: Path, link_target: Path):
         symlink_file.unlink()
     elif symlink_file.is_dir():  # We have set this up be a directory at the start.
         symlink_file.rmdir()
-    elif symlink_file.exists(): # A file exists but isn't a symlink or a directory
+    elif symlink_file.exists():  # A file exists but isn't a symlink or a directory
         raise ValueError(f'{str(symlink_file)} is not a symlink or a directory')
     symlink_file.symlink_to(link_target, target_is_directory=True)
