@@ -20,7 +20,7 @@ from covid_shared.shell_tools import mkdir
 
 DEFAULT_LOG_MESSAGING_FORMAT = ('<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | '
                                 '<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> '
-                                '- <level>{message}</level>')
+                                '- <level>{message}</level> - {extra}')
 
 LOG_FORMATS = {
     # Keys are verbosity.  Specify special log formats here.
@@ -30,7 +30,7 @@ LOG_FORMATS = {
 }
 
 
-def add_logging_sink(sink: typing.TextIO, verbose: int, colorize: bool = False, serialize: bool = False):
+def add_logging_sink(sink: Union[typing.TextIO, Path], verbose: int, colorize: bool = False, serialize: bool = False):
     """Add a new output file handle for logging."""
     level, message_format = LOG_FORMATS.get(verbose, LOG_FORMATS[max(LOG_FORMATS.keys())])
     logger.add(sink, colorize=colorize, level=level, format=message_format, serialize=serialize)
@@ -40,6 +40,16 @@ def configure_logging_to_terminal(verbose: int):
     """Setup logging to sys.stdout."""
     logger.remove(0)  # Clear default configuration
     add_logging_sink(sys.stdout, verbose, colorize=True)
+
+
+def make_log_path(output_path: Path) -> None:
+    log_path = output_path / paths.LOG_DIR
+    mkdir(log_path, exists_ok=True)
+
+
+def configure_logging_to_files(output_path: Path) -> None:
+    add_logging_sink(output_path / paths.LOG_DIR / paths.DETAILED_LOG_FILE_NAME, verbose=2, serialize=True)
+    add_logging_sink(output_path / paths.LOG_DIR / paths.LOG_FILE_NAME, verbose=1)
 
 
 # Common click options
