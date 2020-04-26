@@ -28,6 +28,10 @@ NY_TIMES_OUTPUT_DIR_NAME = 'ny_times_repo'
 MOBILITY_OUTPUT_DIR_NAME = 'mobility_data'
 ONEDRIVE_OUTPUT_DIR_NAME = 'covid_onedrive'
 
+LOG_DIR = "logs"
+LOG_FILE_NAME = "master_log.txt"
+DETAILED_LOG_FILE_NAME = "master_log.json"
+
 
 def latest_production_snapshot_path():
     return _latest_prod_path(SNAPSHOT_ROOT)
