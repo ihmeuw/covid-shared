@@ -272,8 +272,13 @@ def get_last_stage_directory(last_stage_version: str, last_stage_directory: Unio
 def setup_directory_structure(output_root: Union[str, Path], with_production: bool = False):
     """Sets up a best and latest directory for results versioning.
 
+    Parameters
+    ----------
     output_root
         The root directory for all outputs.
+    with_production
+        If true, additionally sets up a `production-run` sub-directory within
+        the primary output root.
 
     """
     output_root = Path(output_root).resolve()
