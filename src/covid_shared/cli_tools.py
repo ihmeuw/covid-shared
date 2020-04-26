@@ -269,7 +269,7 @@ def get_last_stage_directory(last_stage_version: str, last_stage_directory: Unio
         return last_stage_root / last_stage_version
 
 
-def setup_directory_structure(output_root: Union[str, Path], with_production: bool = False):
+def setup_directory_structure(output_root: Union[str, Path], with_production: bool = False) -> None:
     """Sets up a best and latest directory for results versioning.
 
     Parameters
@@ -292,18 +292,21 @@ def setup_directory_structure(output_root: Union[str, Path], with_production: bo
         mkdir(production_dir, exists_ok=True)
 
 
-def mark_best(run_directory: Union[str, Path]):
+def mark_best(run_directory: Union[str, Path]) -> None:
     """Marks an output directory as the best source of data."""
+    run_directory = Path(run_directory).resolve()
     mark_best_explicit(run_directory, run_directory.parent)
 
 
-def mark_latest(run_directory: Union[str, Path]):
+def mark_latest(run_directory: Union[str, Path]) -> None:
     """Marks an output directory as the latest source of data."""
+    run_directory = Path(run_directory).resolve()
     mark_latest_explicit(run_directory, run_directory.parent)
 
 
-def mark_production(run_directory: Union[str, Path], date: str = None):
+def mark_production(run_directory: Union[str, Path], date: str = None) -> None:
     """Marks a run as a production run."""
+    run_directory = Path(run_directory).resolve()
     mark_production_explicit(run_directory, run_directory.parent / paths.PRODUCTION_RUN, date)
 
 
@@ -332,7 +335,7 @@ def mark_explicit(run_directory: Union[str, Path], version_root: Union[str, Path
     move_link(link_file, run_directory)
 
 
-def move_link(symlink_file: Path, link_target: Path):
+def move_link(symlink_file: Path, link_target: Path) -> None:
     """Removes an old symlink and links it to something else."""
     if symlink_file.is_symlink():
         symlink_file.unlink()
