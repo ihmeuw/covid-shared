@@ -42,12 +42,9 @@ def configure_logging_to_terminal(verbose: int):
     add_logging_sink(sys.stdout, verbose, colorize=True)
 
 
-def make_log_path(output_path: Path) -> None:
+def configure_logging_to_files(output_path: Path) -> None:
     log_path = output_path / paths.LOG_DIR
     mkdir(log_path, exists_ok=True)
-
-
-def configure_logging_to_files(output_path: Path) -> None:
     add_logging_sink(output_path / paths.LOG_DIR / paths.DETAILED_LOG_FILE_NAME, verbose=2, serialize=True)
     add_logging_sink(output_path / paths.LOG_DIR / paths.LOG_FILE_NAME, verbose=1)
 
