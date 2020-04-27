@@ -1,3 +1,9 @@
+**1.0.7 - 04/26/2020**
+
+ - Additional logging utilities
+ - Better mkdir support
+ - Expanded marking functions.
+
 **1.0.6 - 04/22/2020**
 
  - Bugfix in symlink handling.
