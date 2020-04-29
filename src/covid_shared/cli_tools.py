@@ -234,7 +234,8 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
     return _wrapped
 
 
-def update_with_previous_metadata(run_metadata: RunMetadata, version, root, default):
+def update_with_previous_metadata(run_metadata: RunMetadata, version: str, root: str, default: str) -> RunMetadata:
+    """Convenience function for updating metadata from an input source."""
     input_root = get_last_stage_directory(version, root, default)
     key = str(input_root).replace(' ', '_').replace('-', '_').lower() + 'metadata'
     with (input_root / 'metadata.yaml').open() as input_metadata_file:
@@ -256,6 +257,7 @@ def get_function_full_argument_mapping(func: types.FunctionType, *args, **kwargs
 
 
 def make_run_directory(output_root: Union[str, Path]) -> Path:
+    """Convenience function for making a new run directory and getting its path."""
     run_directory = get_run_directory(output_root)
     mkdir(run_directory)
     return run_directory
