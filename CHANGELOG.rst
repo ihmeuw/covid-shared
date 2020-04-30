@@ -1,3 +1,9 @@
+**1.0.8 - 04/28/2020**
+
+ - Error on bad production dir name.
+ - Add output root for deaths model.
+ - Extract some convenience functions to reduce cli boilerplate.
+
 **1.0.7 - 04/26/2020**
 
  - Additional logging utilities
