@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from pathlib import Path
 import random
 from typing import Callable
@@ -7,16 +7,21 @@ import pytest
 
 from covid_shared import cli_tools, paths
 
-MOCK_DATETIME = datetime.datetime(2020, 4, 25, 17, 5, 55)
+MOCK_DATETIME = datetime(2020, 4, 25, 17, 5, 55)
 
 
 @pytest.fixture
 def mock_datetime(mocker):
 
     class _mydatetime:
+
         @classmethod
         def now(cls):
             return MOCK_DATETIME
+
+        @classmethod
+        def strptime(cls, s, _format):
+            return datetime.strptime(s, _format)
 
     return mocker.patch('covid_shared.cli_tools.datetime.datetime', _mydatetime)
 
@@ -176,10 +181,17 @@ def test_mark_production_explicit_no_date(run_dir_root: Path, mock_datetime):
     assert link_path.resolve() == run_dir
 
 
-def test_mark_production_explicit(run_dir_root: Path):
+def test_mark_production_explicit_fail(run_dir_root: Path):
     run_dir = _get_random_run_dir(run_dir_root)
     date = 'the_time_is_now'
-    cli_tools.mark_production_explicit(run_dir, run_dir_root / paths.PRODUCTION_RUN, date)
+    with pytest.raises(ValueError):
+        cli_tools.mark_production_explicit(run_dir, run_dir_root / paths.PRODUCTION_RUN, date)
+
+
+def test_mark_production_explicit(run_dir_root: Path):
+    run_dir = _get_random_run_dir(run_dir_root)
+    date = '2020_04_25'
+    cli_tools.mark_production(run_dir, date)
     link_path = run_dir_root / paths.PRODUCTION_RUN / date
     assert link_path.exists()
     assert link_path.is_dir()
@@ -197,9 +209,16 @@ def test_mark_production_no_date(run_dir_root: Path, mock_datetime):
     assert link_path.resolve() == run_dir
 
 
-def test_mark_production(run_dir_root: Path):
+def test_mark_production_fail(run_dir_root: Path):
     run_dir = _get_random_run_dir(run_dir_root)
     date = 'the_time_is_now'
+    with pytest.raises(ValueError):
+        cli_tools.mark_production(run_dir, date)
+
+
+def test_mark_production(run_dir_root: Path):
+    run_dir = _get_random_run_dir(run_dir_root)
+    date = '2020_04_25'
     cli_tools.mark_production(run_dir, date)
     link_path = run_dir_root / paths.PRODUCTION_RUN / date
     assert link_path.exists()

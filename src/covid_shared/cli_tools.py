@@ -345,15 +345,32 @@ def mark_latest(run_directory: Union[str, Path]) -> None:
 
 
 def mark_production(run_directory: Union[str, Path], date: str = None) -> None:
-    """Marks a run as a production run."""
+    """Marks a run as a production run.
+
+    Raises
+    ------
+    ValueError
+        If date is not in the format YYYY_MM_DD
+
+    """
     run_directory = Path(run_directory).resolve()
     mark_production_explicit(run_directory, run_directory.parent / paths.PRODUCTION_RUN, date)
 
 
 def mark_production_explicit(run_directory: Union[str, Path], version_root: Union[str, Path], date: str = None) -> None:
-    """Marks a run as a production run within a specific version root."""
+    """Marks a run as a production run within a specific version root.
+
+    Raises
+    ------
+    ValueError
+        If date is not in the format YYYY_MM_DD
+
+    """
     if date is None:
         date = datetime.datetime.now().strftime('%Y_%m_%d')
+    else:
+        # Will raise a Value error if not the correct format.
+        datetime.datetime.strptime(date, '%Y_%m_%d')
     mark_explicit(run_directory, version_root, date)
 
 
