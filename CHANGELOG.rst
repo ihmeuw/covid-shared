@@ -1,3 +1,7 @@
+**1.0.9 - 04/28/2020**
+
+ - Adjust update with previous metadata.
+
 **1.0.8 - 04/28/2020**
 
  - Error on bad production dir name.
