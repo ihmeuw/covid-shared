@@ -234,7 +234,7 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
     return _wrapped
 
 
-def update_with_previous_metadata(run_metadata: RunMetadata, version: str, root: str, default: str) -> RunMetadata:
+def update_with_previous_metadata(run_metadata: RunMetadata, version: str, root: str, default: Path) -> RunMetadata:
     """Convenience function for updating metadata from an input source."""
     input_root = get_last_stage_directory(version, root, default)
     key = str(input_root).replace(' ', '_').replace('-', '_').lower() + 'metadata'
