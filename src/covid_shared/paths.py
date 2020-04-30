@@ -15,6 +15,7 @@ CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_M
 RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
 SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
+DEATHS_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
 
 # Shared file names
 METADATA_FILE_NAME = 'metadata.yaml'

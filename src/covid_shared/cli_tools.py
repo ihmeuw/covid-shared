@@ -8,7 +8,7 @@ import time
 import traceback
 import types
 import typing
-from typing import Any, Callable, Dict, Mapping, Union
+from typing import Any, Callable, Dict, Mapping, Optional, Union
 
 import click
 from loguru import logger
@@ -234,6 +234,15 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
     return _wrapped
 
 
+def update_with_previous_metadata(run_metadata: RunMetadata, version: str, root: str, default: Path) -> RunMetadata:
+    """Convenience function for updating metadata from an input source."""
+    input_root = get_last_stage_directory(version, root, default)
+    key = str(input_root).replace(' ', '_').replace('-', '_').lower() + 'metadata'
+    with (input_root / 'metadata.yaml').open() as input_metadata_file:
+        run_metadata.update_from_file(key, input_metadata_file)
+    return run_metadata
+
+
 def get_function_full_argument_mapping(func: types.FunctionType, *args, **kwargs) -> Dict:
     """Get a dict representation of all args and kwargs for a function."""
     # Grab all variables in the enclosing namespace.  Args will be first.
@@ -245,6 +254,13 @@ def get_function_full_argument_mapping(func: types.FunctionType, *args, **kwargs
     run_args = dict(zip(arg_names, arg_vals))
     run_args.update({k: str(v) for k, v in kwargs.items()})
     return run_args
+
+
+def make_run_directory(output_root: Union[str, Path]) -> Path:
+    """Convenience function for making a new run directory and getting its path."""
+    run_directory = get_run_directory(output_root)
+    mkdir(run_directory)
+    return run_directory
 
 
 def get_run_directory(output_root: Union[str, Path]) -> Path:
@@ -288,6 +304,7 @@ def setup_directory_structure(output_root: Union[str, Path], with_production: bo
         the primary output root.
 
     """
+    mkdir(output_root, exists_ok=True, parents=True)
     output_root = Path(output_root).resolve()
     for link in [paths.BEST_LINK, paths.LATEST_LINK]:
         link_path = output_root / link
@@ -297,6 +314,22 @@ def setup_directory_structure(output_root: Union[str, Path], with_production: bo
     if with_production:
         production_dir = output_root / paths.PRODUCTION_RUN
         mkdir(production_dir, exists_ok=True)
+
+
+def make_links(app_metadata: Metadata, run_directory: Path,
+               mark_as_best: bool, production_tag: Optional[str]) -> None:
+    if app_metadata['success']:
+        mark_latest(run_directory)
+
+        if mark_as_best:
+            mark_best(run_directory)
+
+            if production_tag:
+                try:
+                    mark_production(run_directory, production_tag)
+                except ValueError:
+                    logger.warning(f'Invalid production tag {production_tag}. Run not marked for production.'
+                                   f'Please provide production tag in format YYYY_MM_DD.')
 
 
 def mark_best(run_directory: Union[str, Path]) -> None:
@@ -312,15 +345,32 @@ def mark_latest(run_directory: Union[str, Path]) -> None:
 
 
 def mark_production(run_directory: Union[str, Path], date: str = None) -> None:
-    """Marks a run as a production run."""
+    """Marks a run as a production run.
+
+    Raises
+    ------
+    ValueError
+        If date is not in the format YYYY_MM_DD
+
+    """
     run_directory = Path(run_directory).resolve()
     mark_production_explicit(run_directory, run_directory.parent / paths.PRODUCTION_RUN, date)
 
 
 def mark_production_explicit(run_directory: Union[str, Path], version_root: Union[str, Path], date: str = None) -> None:
-    """Marks a run as a production run within a specific version root."""
+    """Marks a run as a production run within a specific version root.
+
+    Raises
+    ------
+    ValueError
+        If date is not in the format YYYY_MM_DD
+
+    """
     if date is None:
         date = datetime.datetime.now().strftime('%Y_%m_%d')
+    else:
+        # Will raise a Value error if not the correct format.
+        datetime.datetime.strptime(date, '%Y_%m_%d')
     mark_explicit(run_directory, version_root, date)
 
 
