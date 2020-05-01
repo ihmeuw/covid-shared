@@ -13,9 +13,3 @@ covid-shared
 Shared utilities for covid data processing.
 
 Please send all inquiries to covid19@healthdata.org
-
-Cite as
-
- James Collins, & Joe Wagner. (2020, April 14).
- ihmeuw/covid-shared: Initial Release (Version v1.0.2). Zenodo.
- http://doi.org/10.5281/zenodo.3751993

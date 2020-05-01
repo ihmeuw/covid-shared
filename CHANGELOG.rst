@@ -1,3 +1,7 @@
+**1.0.11 - 05/01/2020**
+
+ - Add a path for raw covariates.
+
 **1.0.10 - 04/30/2020**
 
  - Add new paths for covariate gathering
