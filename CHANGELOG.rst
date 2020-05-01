@@ -1,3 +1,8 @@
+**1.0.10 - 04/30/2020**
+
+ - Add new paths for covariate gathering
+ - Update cli tools to support QC functions.
+
 **1.0.9 - 04/28/2020**
 
  - Adjust update with previous metadata.
