@@ -18,6 +18,7 @@ MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
 DEATHS_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
 TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature/')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
+SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
 
 # Shared file names
 METADATA_FILE_NAME = 'metadata.yaml'
