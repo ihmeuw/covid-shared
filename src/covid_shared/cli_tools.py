@@ -3,12 +3,13 @@ import datetime
 import functools
 from pathlib import Path
 from pprint import pformat
+import re
 import sys
 import time
 import traceback
 import types
 import typing
-from typing import Any, Callable, Dict, Mapping, Optional, Union
+from typing import Any, Callable, Dict, Mapping, Optional, Union, Tuple
 
 import click
 from loguru import logger
@@ -400,3 +401,31 @@ def move_link(symlink_file: Path, link_target: Path) -> None:
     elif symlink_file.exists():  # A file exists but isn't a symlink or a directory
         raise ValueError(f'{str(symlink_file)} is not a symlink or a directory')
     symlink_file.symlink_to(link_target, target_is_directory=True)
+
+
+def get_current_previous_version(current_run_directory: Path, previous_run_directory: Path = None,
+                                 resolved_name: bool = True) -> Tuple[str, str]:
+    """
+    Takes a full path to the current version, and returns the string name of the current and previous versions.
+
+    Parameters
+    ----------
+    current_run_directory
+        Path of the current version.
+    previous_run_directory
+        Path of a previous version. If unspecified, the previous version is taken to be the latest run from a date
+        prior to the current run's date
+    resolved_name
+        If False, resolves a potential symlink to a canonical location
+
+    """
+    run_matcher = r'^\d{4}'
+
+    parent_dir = current_run_directory.parent
+    current_version = current_run_directory.name
+    current_version_resolved = current_run_directory.resolve().name
+    current_version_date = current_version_resolved.split('.')[0]
+    previous_version = previous_run_directory.name if previous_run_directory else sorted([
+        p.name for p in parent_dir.iterdir() if re.search(run_matcher, p.name) and current_version_date > p.name
+    ])[-1]
+    return current_version_resolved if resolved_name else current_version, previous_version
