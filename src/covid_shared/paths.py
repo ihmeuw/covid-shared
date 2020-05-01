@@ -16,6 +16,11 @@ RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
 SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
 DEATHS_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
+TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature/')
+POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
+MOBILITY_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/mobility-covariate')
+SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
+
 
 # Shared file names
 METADATA_FILE_NAME = 'metadata.yaml'
