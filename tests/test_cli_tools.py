@@ -8,6 +8,9 @@ import pytest
 from covid_shared import cli_tools, paths
 
 MOCK_DATETIME = datetime(2020, 4, 25, 17, 5, 55)
+ABSOLUTE_PATH_1 = Path('/absolute/path/one')
+ABSOLUTE_PATH_2 = Path('/absolute/path/two')
+RELATIVE_PATH = Path('some/relative/path')
 
 
 @pytest.fixture
@@ -225,3 +228,22 @@ def test_mark_production(run_dir_root: Path):
     assert link_path.is_dir()
     assert link_path.is_symlink()
     assert link_path.resolve() == run_dir
+
+
+@pytest.mark.parametrize(('last_stage_version', 'last_stage_directory', 'last_stage_root', 'result'),
+                         [(ABSOLUTE_PATH_1, ABSOLUTE_PATH_2, None, ABSOLUTE_PATH_2),
+                          (ABSOLUTE_PATH_1, ABSOLUTE_PATH_2, ABSOLUTE_PATH_1, ABSOLUTE_PATH_2),
+                          (ABSOLUTE_PATH_1, None, None, ABSOLUTE_PATH_1),
+                          (ABSOLUTE_PATH_1, None, ABSOLUTE_PATH_2, ABSOLUTE_PATH_1),
+                          (None, ABSOLUTE_PATH_1, None, ABSOLUTE_PATH_1),
+                          (ABSOLUTE_PATH_1, RELATIVE_PATH, None, None),
+                          (ABSOLUTE_PATH_1, RELATIVE_PATH, ABSOLUTE_PATH_2, ABSOLUTE_PATH_2 / RELATIVE_PATH),
+                          (RELATIVE_PATH, None, None, None),
+                          (RELATIVE_PATH, None, ABSOLUTE_PATH_1, ABSOLUTE_PATH_1 / RELATIVE_PATH),
+                          ])
+def test_get_last_stage_directory(last_stage_version, last_stage_directory, last_stage_root, result):
+    if result:
+        assert cli_tools.get_last_stage_directory(last_stage_version, last_stage_directory, last_stage_root) == result
+    else:
+        with pytest.raises(ValueError):
+            cli_tools.get_last_stage_directory(last_stage_version, last_stage_directory, last_stage_root)
