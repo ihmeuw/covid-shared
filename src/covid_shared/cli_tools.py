@@ -59,9 +59,9 @@ shared_options = [
                  count=True,
                  help='Configure logging verbosity.'),
     click.option('-e, --email-alert',
-                 type=bool,
+                 is_flag=True,
                  default=False,
-                 help='Send email when final job is done')
+                 help='Send email to the calling user when final job is done')
 ]
 
 
