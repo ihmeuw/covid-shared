@@ -10,6 +10,7 @@ import traceback
 import types
 import typing
 from typing import Any, Callable, Dict, Mapping, Optional, Union, Tuple
+from warnings import warn
 
 import click
 from loguru import logger
@@ -281,15 +282,31 @@ def get_run_directory(output_root: Union[str, Path]) -> Path:
     return datetime_dir
 
 
-def get_last_stage_directory(last_stage_version: str, last_stage_directory: Union[str, Path],
+def get_last_stage_directory(last_stage_version: Union[str, Path], last_stage_directory: Union[str, Path] = None,
                              last_stage_root: Path = None) -> Path:
-    """Get the directory containing the results of the last pipeline stage."""
+    """Get the directory containing the results of the last pipeline stage.
+
+    Parameters
+    ----------
+    last_stage_version
+        The path to the version. Can either be an absolute path, or a path relative to the last_stage_root
+
+    last_stage_directory
+        Deprecated parameter. The path to the version. Should use last_stage_version instead
+
+    last_stage_root
+        The path to the root of the resource. Must be an absolute path.
+    """
     if last_stage_directory:
-        return Path(last_stage_directory)
-    elif last_stage_root is None:
-        raise ValueError('No previous stage results found.')
-    else:
-        return last_stage_root / last_stage_version
+        warn(f'Usage of the "last_stage_directory" argument is deprecated. Please use "last_stage_version instead.',
+             Warning)
+    last_stage_directory = last_stage_directory if last_stage_directory is not None else last_stage_version
+    # If last_stage_directory is an absolute path, the last_stage_root will be ignored here
+    last_stage_directory = (last_stage_root / last_stage_directory if last_stage_root is not None
+                            else last_stage_directory)
+    if not last_stage_directory.is_absolute():
+        raise ValueError(f'Invalid version path: {last_stage_directory}')
+    return last_stage_directory
 
 
 def setup_directory_structure(output_root: Union[str, Path], with_production: bool = False) -> None:
