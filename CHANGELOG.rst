@@ -1,3 +1,8 @@
+**1.0.12 - 05/12/2020**
+
+ - Refactor of get_last_stage_directory to be a bit smarter.
+ - Add NOAA data.
+
 **1.0.11 - 05/01/2020**
 
  - Add a path for raw covariates.
