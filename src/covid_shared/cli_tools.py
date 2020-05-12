@@ -237,7 +237,7 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
 
 def update_with_previous_metadata(run_metadata: RunMetadata, input_root: Path) -> RunMetadata:
     """Convenience function for updating metadata from an input source."""
-    key = str(input_root).replace(' ', '_').replace('-', '_').lower() + 'metadata'
+    key = str(input_root.resolve()).replace(' ', '_').replace('-', '_').lower() + '_metadata'
     with (input_root / 'metadata.yaml').open() as input_metadata_file:
         run_metadata.update_from_file(key, input_metadata_file)
     return run_metadata
