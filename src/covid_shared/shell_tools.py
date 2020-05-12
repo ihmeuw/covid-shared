@@ -5,7 +5,7 @@ import subprocess
 from typing import Union
 
 
-def wget(url: str, output_path: Union[str, Path]):
+def wget(url: str, output_path: Union[str, Path]) -> None:
     """Retrieves content at the url and stores it an an output path.
 
     Parameters
@@ -19,7 +19,7 @@ def wget(url: str, output_path: Union[str, Path]):
     subprocess.run(shlex.split(f'wget -O {output_path} {url}'), check=True)
 
 
-def unzip_and_delete_archive(archive_path: Union[str, Path], output_path: Union[str, Path]):
+def unzip_and_delete_archive(archive_path: Union[str, Path], output_path: Union[str, Path]) -> None:
     """Unzips an archive file to a directory and then deletes the archive.
 
     Parameters
