@@ -1,3 +1,7 @@
+**1.0.13 - 05/12/2020**
+
+ - Add unversioned inputs root.
+
 **1.0.12 - 05/12/2020**
 
  - Refactor of get_last_stage_directory to be a bit smarter.
