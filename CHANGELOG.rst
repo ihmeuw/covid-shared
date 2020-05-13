@@ -1,3 +1,7 @@
+**1.0.14 - 05/12/2020**
+
+ - Add static data root.
+
 **1.0.13 - 05/12/2020**
 
  - Add unversioned inputs root.
