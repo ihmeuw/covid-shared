@@ -143,6 +143,16 @@ class RunMetadata(Metadata, YamlIOMixin):
         super().__init__(*args, **kwargs)
         self['start_time'] = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
+    def update(self, metadata_update: Mapping):
+        """Dictionary style update of metadata. If a value to store is the path to a metadata file, store that file's
+         contents instead."""
+        for key, value in metadata_update.items():
+            if type(value) == Path and value.name == paths.METADATA_FILE_NAME:
+                with value.open() as metadata_file:
+                    self.update_from_file(key, metadata_file)
+            else:
+                self[key] = value
+
     def update_from_file(self, metadata_key: str, metadata_file: typing.TextIO):
         """Loads a metadata file from disk and stores it in the key."""
         self._metadata[metadata_key] = yaml.load(metadata_file)
@@ -239,7 +249,7 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
 def update_with_previous_metadata(run_metadata: RunMetadata, input_root: Path) -> RunMetadata:
     """Convenience function for updating metadata from an input source."""
     key = str(input_root.resolve()).replace(' ', '_').replace('-', '_').lower() + '_metadata'
-    with (input_root / 'metadata.yaml').open() as input_metadata_file:
+    with (input_root / paths.METADATA_FILE_NAME).open() as input_metadata_file:
         run_metadata.update_from_file(key, input_metadata_file)
     return run_metadata
 
