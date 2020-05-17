@@ -1,3 +1,10 @@
+**1.0.15 - 05/16/2020**
+
+ - Add shared paths used in testing covariate.
+ - Change lots of stuff to path objects.
+ - Add update from path method to run metadata.
+ - Add paths for seiir inputs and outputs.
+
 **1.0.14 - 05/12/2020**
 
  - Add static data root.
