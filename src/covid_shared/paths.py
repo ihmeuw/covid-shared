@@ -25,6 +25,8 @@ SEIR_COVARIATES_RAW_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates-raw')
 SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
 UNVERSIONED_INPUTS_ROOT = Path('/ihme/covid-19/unversioned-inputs')
 STATIC_DATA_INPUTS_ROOT = Path('/ihme/covid-19/static-data')
+SEIR_REGRESSION_OUTPUTS = Path('/ihme/covid-19/seir-regression')
+INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 
 # Shared file names
 METADATA_FILE_NAME = 'metadata.yaml'
