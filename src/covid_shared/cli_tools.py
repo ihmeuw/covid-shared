@@ -143,15 +143,13 @@ class RunMetadata(Metadata, YamlIOMixin):
         super().__init__(*args, **kwargs)
         self['start_time'] = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 
-    def update(self, metadata_update: Mapping):
-        """Dictionary style update of metadata. If a value to store is the path to a metadata file, store that file's
-         contents instead."""
-        for key, value in metadata_update.items():
-            if type(value) == Path and value.name == paths.METADATA_FILE_NAME:
-                with value.open() as metadata_file:
-                    self.update_from_file(key, metadata_file)
-            else:
-                self[key] = value
+    def update_from_path(self, metadata_key: str, metadata_path: Union[str, Path]):
+        """Updates metadata from a metadata file path."""
+        metadata_path = Path(metadata_path)
+        if not metadata_path.name == paths.METADATA_FILE_NAME:
+            raise ValueError('Can only update from `metadata.yaml` files.')
+        with metadata_path.open() as metadata_file:
+            self.update_from_file(metadata_key, metadata_file)
 
     def update_from_file(self, metadata_key: str, metadata_file: typing.TextIO):
         """Loads a metadata file from disk and stores it in the key."""
