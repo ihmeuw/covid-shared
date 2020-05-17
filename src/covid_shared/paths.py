@@ -31,21 +31,21 @@ SEIR_REGRESSION_OUTPUTS = Path('/ihme/covid-19/seir-regression')
 INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 
 # Shared file names
-METADATA_FILE_NAME = 'metadata.yaml'
-BEST_LINK = 'best'
-LATEST_LINK = 'latest'
-PRODUCTION_RUN = 'production-runs'
+METADATA_FILE_NAME = Path('metadata.yaml')
+BEST_LINK = Path('best')
+LATEST_LINK = Path('latest')
+PRODUCTION_RUN = Path('production-runs')
 
-JOHNS_HOPKINS_OUTPUT_DIR_NAME = 'johns_hopkins_repo'
-ITALY_OUTPUT_DIR_NAME = 'italy_repo'
-NY_TIMES_OUTPUT_DIR_NAME = 'ny_times_repo'
-NOAA_OUTPUT_DIR_NAME = 'noaa_data'
-MOBILITY_OUTPUT_DIR_NAME = 'mobility_data'
-ONEDRIVE_OUTPUT_DIR_NAME = 'covid_onedrive'
+JOHNS_HOPKINS_OUTPUT_DIR_NAME = Path('johns_hopkins_repo')
+ITALY_OUTPUT_DIR_NAME = Path('italy_repo')
+NY_TIMES_OUTPUT_DIR_NAME = Path('ny_times_repo')
+NOAA_OUTPUT_DIR_NAME = Path('noaa_data')
+MOBILITY_OUTPUT_DIR_NAME = Path('mobility_data')
+ONEDRIVE_OUTPUT_DIR_NAME = Path('covid_onedrive')
 
-LOG_DIR = "logs"
-LOG_FILE_NAME = "master_log.txt"
-DETAILED_LOG_FILE_NAME = "master_log.json"
+LOG_DIR = Path("logs")
+LOG_FILE_NAME = Path("master_log.txt")
+DETAILED_LOG_FILE_NAME = Path("master_log.json")
 
 
 def latest_production_snapshot_path():
