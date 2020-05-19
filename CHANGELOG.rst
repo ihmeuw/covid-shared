@@ -1,3 +1,7 @@
+**1.0.16 - 05/18/2020**
+
+ - Bugfix in metadata file comparison.
+
 **1.0.15 - 05/16/2020**
 
  - Add shared paths used in testing covariate.
