@@ -146,7 +146,7 @@ class RunMetadata(Metadata, YamlIOMixin):
     def update_from_path(self, metadata_key: str, metadata_path: Union[str, Path]):
         """Updates metadata from a metadata file path."""
         metadata_path = Path(metadata_path)
-        if not metadata_path.name == paths.METADATA_FILE_NAME:
+        if not metadata_path.name == paths.METADATA_FILE_NAME.name:
             raise ValueError('Can only update from `metadata.yaml` files.')
         with metadata_path.open() as metadata_file:
             self.update_from_file(metadata_key, metadata_file)
