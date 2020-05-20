@@ -14,7 +14,7 @@ CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_M
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/ihme/singularity-images/rstudio/shells/execRscript.sh')
-R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/rstudio/ihme_rstudio_3602.img')
+R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/rstudio/ihme_rstudio_3620.img')
 RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
 SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
