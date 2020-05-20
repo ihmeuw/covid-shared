@@ -1,7 +1,10 @@
+**1.0.18 - 05/20/2020**
+
+ - Add more seiir paths.
+
 **1.0.17 - 05/19/2020**
 
  - Fix default R singularity image path
-
 
 **1.0.16 - 05/18/2020**
 
