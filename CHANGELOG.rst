@@ -1,3 +1,8 @@
+**1.0.17 - 05/19/2020**
+
+ - Fix default R singularity image path
+
+
 **1.0.16 - 05/18/2020**
 
  - Bugfix in metadata file comparison.
