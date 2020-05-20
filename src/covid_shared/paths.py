@@ -15,20 +15,28 @@ CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_M
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/ihme/singularity-images/rstudio/shells/execRscript.sh')
 R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/rstudio/ihme_rstudio_3620.img')
+
 RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
+
+UNVERSIONED_INPUTS_ROOT = Path('/ihme/covid-19/unversioned-inputs')
+STATIC_DATA_INPUTS_ROOT = Path('/ihme/covid-19/static-data')
 SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
+
 DEATHS_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
+INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
+
 TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature/')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
 MOBILITY_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/mobility-covariate')
 TESTING_OUTPUT_ROOT = Path('/ihme/covid-19/testing-outputs')
 SEIR_COVARIATES_RAW_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates-raw')
 SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
-UNVERSIONED_INPUTS_ROOT = Path('/ihme/covid-19/unversioned-inputs')
-STATIC_DATA_INPUTS_ROOT = Path('/ihme/covid-19/static-data')
+
+SEIR_FIT_OUTPUTS = Path('/ihme/covid-19/seir-fit')
 SEIR_REGRESSION_OUTPUTS = Path('/ihme/covid-19/seir-regression')
-INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
+SEIR_FORECAST_OUTPUTS = Path('/ihme/covid-19/seir-forecast')
+
 
 # Shared file names
 METADATA_FILE_NAME = Path('metadata.yaml')
