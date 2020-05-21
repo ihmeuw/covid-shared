@@ -13,8 +13,8 @@ CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_M
 
 
 # Shared paths
-EXEC_R_SCRIPT_PATH = Path('/ihme/singularity-images/rstudio/shells/execRscript.sh')
-R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/rstudio/ihme_rstudio_3620.img')
+EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
+R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/lbd/releases/lbd_full_20200128.simg')
 
 RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
 
@@ -110,6 +110,3 @@ def recursive_set_permissions(path: Path):
         path.chmod(DIRECTORY_PERMISSIONS)
         for p in path.iterdir():
             recursive_set_permissions(p)
-
-
-
