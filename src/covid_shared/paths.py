@@ -10,7 +10,7 @@ NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
 ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
 NOAA_PM_DATA = "ftp://ftp.cdc.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surface_gauss/air.2m.gauss.2020.nc"
 CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
-
+OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 
 # Shared paths
 RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
@@ -37,6 +37,7 @@ NY_TIMES_OUTPUT_DIR_NAME = 'ny_times_repo'
 NOAA_OUTPUT_DIR_NAME = 'noaa_data'
 MOBILITY_OUTPUT_DIR_NAME = 'mobility_data'
 ONEDRIVE_OUTPUT_DIR_NAME = 'covid_onedrive'
+OPEN_COVID19_GROUP_DIR_NAME = 'open_covid19_working_group'
 
 LOG_DIR = "logs"
 LOG_FILE_NAME = "master_log.txt"
