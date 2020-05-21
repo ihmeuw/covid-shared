@@ -1,3 +1,7 @@
+**1.0.20 - 05/21/2020**
+
+ - Fix yaml warning.
+
 **1.0.19 - 05/21/2020**
 
  - Update singularity paths for executing R scripts.

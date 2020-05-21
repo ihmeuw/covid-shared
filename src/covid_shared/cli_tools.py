@@ -153,7 +153,7 @@ class RunMetadata(Metadata, YamlIOMixin):
 
     def update_from_file(self, metadata_key: str, metadata_file: typing.TextIO):
         """Loads a metadata file from disk and stores it in the key."""
-        self._metadata[metadata_key] = yaml.load(metadata_file)
+        self._metadata[metadata_key] = yaml.full_load(metadata_file)
 
     def dump(self, metadata_file_path: Union[str, Path]):
         self._metadata['run_time'] = f"{time.time() - self._start:.2f} seconds"
