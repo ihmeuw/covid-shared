@@ -1,3 +1,7 @@
+**1.0.19 - 05/21/2020**
+
+ - Update singularity paths for executing R scripts.
+
 **1.0.18 - 05/20/2020**
 
  - Add more seiir paths.
