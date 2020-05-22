@@ -13,10 +13,19 @@ CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_M
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 
 # Shared paths
+EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
+R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/lbd/releases/lbd_full_20200128.simg')
+
 RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
+
+UNVERSIONED_INPUTS_ROOT = Path('/ihme/covid-19/unversioned-inputs')
+STATIC_DATA_INPUTS_ROOT = Path('/ihme/covid-19/static-data')
 SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
+
 DEATHS_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
+INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
+
 TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature/')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
 MOBILITY_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/mobility-covariate')
@@ -24,24 +33,28 @@ TESTING_OUTPUT_ROOT = Path('/ihme/covid-19/testing-outputs')
 SEIR_COVARIATES_RAW_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates-raw')
 SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
 
+SEIR_FIT_OUTPUTS = Path('/ihme/covid-19/seir-fit')
+SEIR_REGRESSION_OUTPUTS = Path('/ihme/covid-19/seir-regression')
+SEIR_FORECAST_OUTPUTS = Path('/ihme/covid-19/seir-forecast')
+
 
 # Shared file names
-METADATA_FILE_NAME = 'metadata.yaml'
-BEST_LINK = 'best'
-LATEST_LINK = 'latest'
-PRODUCTION_RUN = 'production-runs'
+METADATA_FILE_NAME = Path('metadata.yaml')
+BEST_LINK = Path('best')
+LATEST_LINK = Path('latest')
+PRODUCTION_RUN = Path('production-runs')
 
-JOHNS_HOPKINS_OUTPUT_DIR_NAME = 'johns_hopkins_repo'
-ITALY_OUTPUT_DIR_NAME = 'italy_repo'
-NY_TIMES_OUTPUT_DIR_NAME = 'ny_times_repo'
-NOAA_OUTPUT_DIR_NAME = 'noaa_data'
-MOBILITY_OUTPUT_DIR_NAME = 'mobility_data'
-ONEDRIVE_OUTPUT_DIR_NAME = 'covid_onedrive'
-OPEN_COVID19_GROUP_DIR_NAME = 'open_covid19_working_group'
+JOHNS_HOPKINS_OUTPUT_DIR_NAME = Path('johns_hopkins_repo')
+ITALY_OUTPUT_DIR_NAME = Path('italy_repo')
+NY_TIMES_OUTPUT_DIR_NAME = Path('ny_times_repo')
+NOAA_OUTPUT_DIR_NAME = Path('noaa_data')
+MOBILITY_OUTPUT_DIR_NAME = Path('mobility_data')
+ONEDRIVE_OUTPUT_DIR_NAME = Path('covid_onedrive')
+OPEN_COVID19_OUTPUT_DIR_NAME = Path('open_covid19_working_group')
 
-LOG_DIR = "logs"
-LOG_FILE_NAME = "master_log.txt"
-DETAILED_LOG_FILE_NAME = "master_log.json"
+LOG_DIR = Path("logs")
+LOG_FILE_NAME = Path("master_log.txt")
+DETAILED_LOG_FILE_NAME = Path("master_log.json")
 
 
 def latest_production_snapshot_path():
@@ -98,6 +111,3 @@ def recursive_set_permissions(path: Path):
         path.chmod(DIRECTORY_PERMISSIONS)
         for p in path.iterdir():
             recursive_set_permissions(p)
-
-
-

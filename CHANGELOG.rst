@@ -1,3 +1,43 @@
+**1.0.20 - 05/21/2020**
+
+ - Fix yaml warning.
+
+**1.0.19 - 05/21/2020**
+
+ - Update singularity paths for executing R scripts.
+
+**1.0.18 - 05/20/2020**
+
+ - Add more seiir paths.
+
+**1.0.17 - 05/19/2020**
+
+ - Fix default R singularity image path
+
+**1.0.16 - 05/18/2020**
+
+ - Bugfix in metadata file comparison.
+
+**1.0.15 - 05/16/2020**
+
+ - Add shared paths used in testing covariate.
+ - Change lots of stuff to path objects.
+ - Add update from path method to run metadata.
+ - Add paths for seiir inputs and outputs.
+
+**1.0.14 - 05/12/2020**
+
+ - Add static data root.
+
+**1.0.13 - 05/12/2020**
+
+ - Add unversioned inputs root.
+
+**1.0.12 - 05/12/2020**
+
+ - Refactor of get_last_stage_directory to be a bit smarter.
+ - Add NOAA data.
+
 **1.0.11 - 05/01/2020**
 
  - Add a path for raw covariates.
