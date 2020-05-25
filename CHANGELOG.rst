@@ -1,6 +1,10 @@
+**1.0.23 - 05/25/2020**
+
+ - Redirect deaths outputs.
+
 **1.0.22 - 05/24/2020**
 
- - New outputs root for deaths"
+ - New outputs root for deaths
 
 **1.0.21 - 05/21/2020**
 
