@@ -24,6 +24,7 @@ SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
 
 DEATHS_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
+DEATHS_SPLINE_OUTPUT_ROOT = Path('/ihme/covid-19/deaths/')
 INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
