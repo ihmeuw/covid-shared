@@ -30,6 +30,7 @@ MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
 TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature/')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
 MOBILITY_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/mobility-covariate')
+MOBILITY_COVARIATES_GPR_OUTPUT_ROOT = MOBILITY_COVARIATES_OUTPUT_ROOT / 'gpr_outputs'
 TESTING_OUTPUT_ROOT = Path('/ihme/covid-19/testing-outputs')
 SEIR_COVARIATES_RAW_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates-raw')
 SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
