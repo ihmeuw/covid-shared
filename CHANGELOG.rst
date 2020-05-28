@@ -1,3 +1,8 @@
+**1.0.24 - 05/28/2020**
+
+ - Refactor cli_tools as a subpackage
+ - Add mobility gpr path
+
 **1.0.23 - 05/25/2020**
 
  - Redirect deaths outputs.
