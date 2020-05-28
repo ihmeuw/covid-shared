@@ -26,7 +26,7 @@ def mock_datetime(mocker):
         def strptime(cls, s, _format):
             return datetime.strptime(s, _format)
 
-    return mocker.patch('covid_shared.cli_tools.datetime.datetime', _mydatetime)
+    return mocker.patch('covid_shared.cli_tools.run_directory.datetime.datetime', _mydatetime)
 
 
 @pytest.fixture()
