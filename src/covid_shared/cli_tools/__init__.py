@@ -1,4 +1,4 @@
-from covid_shared.cli_tools.decorators import add_verbose_and_with_debugger, get_function_full_argument_mapping
+from covid_shared.cli_tools.decorators import add_verbose_and_with_debugger, pass_run_metadata
 from covid_shared.cli_tools.logging import (LOG_FORMATS, DEFAULT_LOG_MESSAGING_FORMAT, add_logging_sink,
                                             configure_logging_to_files, configure_logging_to_terminal)
 from covid_shared.cli_tools.metadata import (Metadata, RunMetadata, YamlIOMixin, get_function_full_argument_mapping,
