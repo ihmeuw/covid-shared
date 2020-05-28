@@ -1,3 +1,7 @@
+**1.0.25 - 05/28/2020**
+
+ - Hotfix in import paths to preserve backwards compatibility.
+
 **1.0.24 - 05/28/2020**
 
  - Refactor cli_tools as a subpackage
