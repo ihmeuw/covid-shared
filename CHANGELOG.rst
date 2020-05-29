@@ -1,3 +1,7 @@
+**1.0.26 - 05/28/2020**
+
+ - Create common click option decorators for CLI methods
+
 **1.0.25 - 05/28/2020**
 
  - Hotfix in import paths to preserve backwards compatibility.
