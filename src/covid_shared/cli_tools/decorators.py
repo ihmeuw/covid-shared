@@ -69,7 +69,7 @@ def add_r_singularity_option():
     return wrapper
 
 
-def add_create_directory_options(default_output_root: Path):
+def add_output_options(default_output_root: Path):
     """
     Decorator to set CLI command options required when producing outputs.
     """
@@ -80,7 +80,7 @@ def add_create_directory_options(default_output_root: Path):
             type=click.Path(file_okay=False),
             default=default_output_root,
             help=(f"Directory to outputs. Defaults to {default_output_root}/YYYY_MM_DD.VV for today's date and the "
-                  f"newest uncreated version")
+                  "newest uncreated version")
         )(entry_point)
 
         entry_point = click.option(
@@ -92,7 +92,6 @@ def add_create_directory_options(default_output_root: Path):
         entry_point = click.option(
             '-b', '--mark-best',
             is_flag=True,
-            default=False,
             help='Mark this run as "best"'
         )(entry_point)
 
@@ -118,8 +117,10 @@ def _create_dependency_option(data_source: str, default: Path = BEST_LINK):
         }
         if default is not None:
             click_args['default'] = default
+            click_args['help'] = f'Version of the {data_source.replace("-", " ")} to use. Defaults to "{default}"',
         else:
             click_args['required'] = True
+            click_args['help'] = f'Version of the {data_source.replace("-", " ")} to use. Required."',
 
         entry_point = click.option(
             f"--{data_source}-version",
