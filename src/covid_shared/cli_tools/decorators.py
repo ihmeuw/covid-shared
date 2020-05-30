@@ -113,14 +113,13 @@ def _create_dependency_option(data_source: str, default: Path = BEST_LINK):
     def wrapper(entry_point: types.FunctionType):
         click_args = {
             'type': click.Path(file_okay=False),
-            'help': f'Version of the {data_source.replace("-", " ")} to use. Defaults to "{default}"',
         }
         if default is not None:
             click_args['default'] = default
-            click_args['help'] = f'Version of the {data_source.replace("-", " ")} to use. Defaults to "{default}"',
+            click_args['help'] = f'Version of the {data_source.replace("-", " ")} to use. Defaults to "{default}"'
         else:
             click_args['required'] = True
-            click_args['help'] = f'Version of the {data_source.replace("-", " ")} to use. Required."',
+            click_args['help'] = f'Version of the {data_source.replace("-", " ")} to use. Required."'
 
         entry_point = click.option(
             f"--{data_source}-version",
