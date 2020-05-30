@@ -1,4 +1,8 @@
-**1.0.26 - 05/28/2020**
+**1.0.25 - 05/29/2020**
+
+ - Hotfix for bug in decorator method
+
+**1.0.26 - 05/29/2020**
 
  - Create common click option decorators for CLI methods
 
