@@ -1,4 +1,8 @@
-**1.0.25 - 05/29/2020**
+**1.0.28 - 05/31/2020**
+
+ - Add path for pneumonia covariate.
+
+**1.0.27 - 05/29/2020**
 
  - Hotfix for bug in decorator method
 
