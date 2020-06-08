@@ -1,3 +1,7 @@
+**1.0.29 - 06/08/2020**
+
+ - Add path for contact covariate.
+
 **1.0.28 - 05/31/2020**
 
  - Add path for pneumonia covariate.
