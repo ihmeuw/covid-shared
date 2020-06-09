@@ -252,3 +252,15 @@ def test_get_last_stage_directory(last_stage_version, last_stage_directory, last
 def test_get_last_stage_directory_errors(last_stage_version, last_stage_directory, last_stage_root):
     with pytest.raises(ValueError):
         cli_tools.get_last_stage_directory(last_stage_version, last_stage_directory, last_stage_root)
+
+
+def test_location_metadata_path():
+    """Testing the addition of a standardized location_set_path, the file format does not match
+     that of other versioned files (ex. INFECTIONATOR_OUTPUTS) so the 'version' includes the
+     full csv """
+    loc_set_path = cli_tools.get_last_stage_directory(
+        last_stage_version='location_metadata_677.csv',
+        last_stage_root=paths.LOCATION_METADATA_INPUTS)
+
+    assert loc_set_path == Path('/ihme/covid-19/seir-pipeline-outputs/metadata-inputs/'
+                                'location_metadata_677.csv')
