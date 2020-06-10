@@ -27,7 +27,8 @@ INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
 
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
-TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature/')
+PNEUMONIA_OUTPUT_ROOT = Path('/ihme/covid-19/pneumonia')
+TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
 MOBILITY_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/mobility-covariate')
 MOBILITY_COVARIATES_GPR_OUTPUT_ROOT = MOBILITY_COVARIATES_OUTPUT_ROOT / 'gpr_outputs'

@@ -1,3 +1,15 @@
+**1.0.28 - 05/31/2020**
+
+ - Add path for pneumonia covariate.
+
+**1.0.27 - 05/29/2020**
+
+ - Hotfix for bug in decorator method
+
+**1.0.26 - 05/29/2020**
+
+ - Create common click option decorators for CLI methods
+
 **1.0.25 - 05/28/2020**
 
  - Hotfix in import paths to preserve backwards compatibility.
