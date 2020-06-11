@@ -27,6 +27,7 @@ DEATHS_SPLINE_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
 INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
+MASK_CONTACT_INTERACTION_OUTPUT_ROOT = Path('/ihme/covid-19/mask-contact-interaction-outputs')
 PNEUMONIA_OUTPUT_ROOT = Path('/ihme/covid-19/pneumonia')
 TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
