@@ -1,3 +1,7 @@
+**1.0.30 - 06/11/2020**
+
+ - Add path for mask/contact interaction covariate.
+
 **1.0.29 - 06/08/2020**
 
  - Add path for contact covariate.
