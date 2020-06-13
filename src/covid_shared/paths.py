@@ -22,9 +22,9 @@ UNVERSIONED_INPUTS_ROOT = Path('/ihme/covid-19/unversioned-inputs')
 STATIC_DATA_INPUTS_ROOT = Path('/ihme/covid-19/static-data')
 SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
-
 DEATHS_SPLINE_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
 INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
+SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
 
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
 MASK_CONTACT_INTERACTION_OUTPUT_ROOT = Path('/ihme/covid-19/mask-contact-interaction-outputs')
