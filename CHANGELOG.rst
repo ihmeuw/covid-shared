@@ -1,4 +1,8 @@
-**1.0.31 - 06/11/2020**
+**1.0.32 - 06/12/2020**
+
+ - Expand cli tools interface.
+
+**1.0.31 - 06/12/2020**
 
  - Add path for shapefiles.
 
