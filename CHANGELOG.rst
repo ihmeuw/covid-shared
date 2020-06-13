@@ -1,3 +1,7 @@
+**1.0.31 - 06/11/2020**
+
+ - Add path for shapefiles.
+
 **1.0.30 - 06/11/2020**
 
  - Add path for mask/contact interaction covariate.
