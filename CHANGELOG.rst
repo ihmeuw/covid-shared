@@ -1,3 +1,7 @@
+**1.0.33 - 07/14/2020**
+
+ - Add path for webscraper outputs.
+
 **1.0.32 - 06/12/2020**
 
  - Expand cli tools interface.
