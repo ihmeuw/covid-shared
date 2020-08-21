@@ -1,3 +1,7 @@
+**1.0.34 - 08/21/2020**
+
+ - Add path for CDC race/ethnicity data.
+
 **1.0.33 - 07/14/2020**
 
  - Add path for webscraper outputs.
