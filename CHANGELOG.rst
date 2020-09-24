@@ -1,3 +1,7 @@
+**1.0.35 - 09/24/2020**
+
+ - Add path for SEIR final outputs.
+
 **1.0.34 - 08/21/2020**
 
  - Add path for CDC race/ethnicity data.

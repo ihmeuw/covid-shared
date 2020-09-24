@@ -43,6 +43,7 @@ SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
 SEIR_FIT_OUTPUTS = Path('/ihme/covid-19/seir-fit')
 SEIR_REGRESSION_OUTPUTS = Path('/ihme/covid-19/seir-regression')
 SEIR_FORECAST_OUTPUTS = Path('/ihme/covid-19/seir-forecast')
+SEIR_FINAL_OUTPUTS = Path('/ihme/covid-19/seir-outputs')
 
 
 # Shared file names
