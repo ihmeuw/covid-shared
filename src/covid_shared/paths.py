@@ -11,7 +11,7 @@ ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
 NOAA_PM_DATA = "ftp://ftp.cdc.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surface_gauss/air.2m.gauss.2020.nc"
 CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
-CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/resource/ks3g-spdg.csv"
+CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
