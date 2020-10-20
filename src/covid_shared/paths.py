@@ -12,7 +12,7 @@ NOAA_PM_DATA = "ftp://ftp.cdc.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surfac
 CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
-SEROSURVEY_SUPPLEMENTAL_DATA = '/snfs1/Project/covid/data_intake/serology/supplemental_serosurvey_metadata'
+SEROSURVEY_SUPPLEMENTAL_DATA = '/home/j/Project/covid/data_intake/serology/supplemental_serosurvey_metadata'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
