@@ -1,4 +1,8 @@
-**1.0.36 - 10/19/2020**
+**1.0.37 - 10/20/2020**
+
+ - Add path for serosurvey supplemental metadata.
+ 
+ **1.0.36 - 10/19/2020**
 
  - Change CDC race/ethnicity data path (old path had truncated data).
 
