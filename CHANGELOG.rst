@@ -1,3 +1,7 @@
+**1.0.38 - 10/21/2020**
+
+ - Add path for new vaccine-coverage covariate.
+
 **1.0.37 - 10/20/2020**
 
  - Add path for serosurvey supplemental metadata.
