@@ -1,3 +1,7 @@
+**1.0.39 - 10/21/2020**
+
+ - Add path for survey data on J drive
+
 **1.0.38 - 10/21/2020**
 
  - Add path for new vaccine-coverage covariate.
