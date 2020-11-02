@@ -16,6 +16,7 @@ SEROSURVEY_SUPPLEMENTAL_DATA = '/home/j/Project/covid/data_intake/serology/suppl
 US_SYMPTOM_SURVEY_DATA = '/home/j/Project/covid/data_intake/symptom_survey/us'
 GLOBAL_SYMPTOM_SURVEY_DATA = '/home/j/Project/covid/data_intake/symptom_survey/global'
 PULSE_SURVEY_DATA = '/home/j/Project/covid/data_intake/pulse_survey/US Census_pulse surveys'
+AUTOPROCESSING_CFR_AGE = '/home/j/Project/covid/data_intake/auto_processing/CFR-age'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
@@ -72,6 +73,7 @@ US_SYMPTOM_SURVEY_OUTPUT_DIR_NAME = Path('us')
 GLOBAL_SYMPTOM_SURVEY_OUTPUT_DIR_NAME = Path('global')
 PULSE_SURVEY_OUTPUT_DIR_NAME = Path('pulse_survey')
 PULSE_SURVEY_US_CENSUS_OUTPUT_DIR_NAME = Path('US Census_pulse surveys')
+AUTOPROCESSING_CFR_AGE_OUTPUT_DIR_NAME = Path('auto_processing/CFR-age')
 
 LOG_DIR = Path("logs")
 LOG_FILE_NAME = Path("master_log.txt")
