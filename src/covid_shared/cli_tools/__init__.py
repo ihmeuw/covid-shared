@@ -11,3 +11,4 @@ from covid_shared.cli_tools.run_directory import (get_last_stage_directory, get_
                                                   mark_best_explicit, mark_explicit, mark_latest, mark_latest_explicit,
                                                   mark_production, mark_production_explicit, move_link,
                                                   setup_directory_structure)
+from covid_shared.cli_tools.cleanup import finish_application

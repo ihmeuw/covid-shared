@@ -8,7 +8,7 @@ import time
 import traceback
 import types
 import typing
-from typing import Any, Callable, Dict, Mapping, Union
+from typing import Any, Callable, Dict, Mapping, Optional, Union
 
 import click
 from loguru import logger
@@ -114,7 +114,7 @@ class RunMetadata(Metadata, YamlIOMixin):
 
 
 def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: bool,
-                        app_metadata: Metadata = Metadata()) -> Callable:
+                        app_metadata: Optional[Metadata] = None) -> Callable:
     """Monitors an application for errors and injects a metadata container.
 
     Catches records them if they occur. Can also be configured to drop
@@ -133,7 +133,8 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
         Record for application metadata.
 
     """
-
+    if app_metadata is None:
+        app_metadata = Metadata()
     @functools.wraps(func)
     def _wrapped(*args, **kwargs):
         result = None
