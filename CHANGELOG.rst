@@ -1,3 +1,7 @@
+**1.0.40 - 11/19/2020**
+
+ - Add path for social distancing data on J drive
+
 **1.0.39 - 10/21/2020**
 
  - Add path for survey data on J drive
