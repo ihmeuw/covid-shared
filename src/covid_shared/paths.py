@@ -16,6 +16,7 @@ SEROSURVEY_SUPPLEMENTAL_DATA = '/home/j/Project/covid/data_intake/serology/suppl
 US_SYMPTOM_SURVEY_DATA = '/home/j/Project/covid/data_intake/symptom_survey/us'
 GLOBAL_SYMPTOM_SURVEY_DATA = '/home/j/Project/covid/data_intake/symptom_survey/global'
 PULSE_SURVEY_DATA = '/home/j/Project/covid/data_intake/pulse_survey/US Census_pulse surveys'
+SOCIAL_DISTANCING_DATA = '/home/j/Project/covid/data_intake/social distancing'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
@@ -33,19 +34,14 @@ SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
 WEBSCRAPER_ROOT = Path('/ihme/covid-19/webscrape')
 
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
-MASK_CONTACT_INTERACTION_OUTPUT_ROOT = Path('/ihme/covid-19/mask-contact-interaction-outputs')
 PNEUMONIA_OUTPUT_ROOT = Path('/ihme/covid-19/pneumonia')
-TEMPERATURE_OUTPUT_ROOT = Path('/ihme/covid-19/temperature')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
 MOBILITY_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/mobility-covariate')
 MOBILITY_COVARIATES_GPR_OUTPUT_ROOT = MOBILITY_COVARIATES_OUTPUT_ROOT / 'gpr_outputs'
 TESTING_OUTPUT_ROOT = Path('/ihme/covid-19/testing-outputs')
-CONTACT_OUTPUT_ROOT = Path('/ihme/covid-19/contact-covariate')
 VACCINE_COVERAGE_OUTPUT_ROOT = Path('/ihme/covid-19/vaccine-coverage')
-SEIR_COVARIATES_RAW_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates-raw')
 SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
 
-SEIR_FIT_OUTPUTS = Path('/ihme/covid-19/seir-fit')
 SEIR_REGRESSION_OUTPUTS = Path('/ihme/covid-19/seir-regression')
 SEIR_FORECAST_OUTPUTS = Path('/ihme/covid-19/seir-forecast')
 SEIR_FINAL_OUTPUTS = Path('/ihme/covid-19/seir-outputs')
@@ -72,6 +68,7 @@ US_SYMPTOM_SURVEY_OUTPUT_DIR_NAME = Path('us')
 GLOBAL_SYMPTOM_SURVEY_OUTPUT_DIR_NAME = Path('global')
 PULSE_SURVEY_OUTPUT_DIR_NAME = Path('pulse_survey')
 PULSE_SURVEY_US_CENSUS_OUTPUT_DIR_NAME = Path('US Census_pulse surveys')
+SOCIAL_DISTANCING_DIR_NAME = Path('social distancing')
 
 LOG_DIR = Path("logs")
 LOG_FILE_NAME = Path("master_log.txt")
