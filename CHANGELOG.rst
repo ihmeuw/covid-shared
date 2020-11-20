@@ -1,3 +1,9 @@
+**1.0.40 - 11/19/2020**
+
+ - Add path for survey data on J drive
+ - Remove old paths
+ - Return non-zero exit codes on application failure
+
 **1.0.39 - 10/21/2020**
 
  - Add path for survey data on J drive
