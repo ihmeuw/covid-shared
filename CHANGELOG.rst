@@ -1,3 +1,7 @@
+**1.0.42 - 12/11/2020**
+
+ - Add path for HHS data on J drive
+
 **1.0.41 - 12/09/2020**
 
  - Add path for CFR-age MaxPlanck data on J drive
