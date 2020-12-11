@@ -12,12 +12,14 @@ NOAA_PM_DATA = "ftp://ftp.cdc.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surfac
 CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
-SEROSURVEY_SUPPLEMENTAL_DATA = '/home/j/Project/covid/data_intake/serology/supplemental_serosurvey_metadata'
-US_SYMPTOM_SURVEY_DATA = '/home/j/Project/covid/data_intake/symptom_survey/us'
-GLOBAL_SYMPTOM_SURVEY_DATA = '/home/j/Project/covid/data_intake/symptom_survey/global'
-PULSE_SURVEY_DATA = '/home/j/Project/covid/data_intake/pulse_survey/US Census_pulse surveys'
-SOCIAL_DISTANCING_DATA = '/home/j/Project/covid/data_intake/social distancing'
-CFR_AGE_MAX_PLANCK_DATA = '/home/j/Project/covid/data_intake/CFR-age/MaxPlanck'
+DATA_INTAKE_J_DIR = Path('/home/j/Project/covid/data_intake')
+SEROSURVEY_SUPPLEMENTAL_DATA = DATA_INTAKE_J_DIR / 'serology/supplemental_serosurvey_metadata'
+US_SYMPTOM_SURVEY_DATA = DATA_INTAKE_J_DIR / 'symptom_survey/us'
+GLOBAL_SYMPTOM_SURVEY_DATA = DATA_INTAKE_J_DIR / 'symptom_survey/global'
+PULSE_SURVEY_DATA = DATA_INTAKE_J_DIR / 'pulse_survey/US Census_pulse surveys'
+SOCIAL_DISTANCING_DATA = DATA_INTAKE_J_DIR / 'social distancing'
+CFR_AGE_MAX_PLANCK_DATA = DATA_INTAKE_J_DIR / 'CFR-age/MaxPlanck'
+HHS_DATA = DATA_INTAKE_J_DIR / 'hhs/states/out'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
@@ -72,6 +74,7 @@ PULSE_SURVEY_US_CENSUS_OUTPUT_DIR_NAME = Path('US Census_pulse surveys')
 SOCIAL_DISTANCING_DIR_NAME = Path('social distancing')
 CFR_AGE_DIR_NAME = Path('cfr_age')
 CFR_AGE_MAX_PLANCK_DIR_NAME = Path('MaxPlanck')
+HHS_DIR_NAME = Path('hhs_data')
 
 LOG_DIR = Path("logs")
 LOG_FILE_NAME = Path("master_log.txt")
