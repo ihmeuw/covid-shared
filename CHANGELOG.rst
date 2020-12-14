@@ -1,4 +1,4 @@
-**1.0.44 - 12/14/2020**
+**1.0.45 - 12/14/2020**
 
  - Only deploy on successful test pass.
 
