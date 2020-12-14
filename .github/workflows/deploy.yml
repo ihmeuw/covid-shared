@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     needs:
-      - test  # Only run if "test" workflow has finished successfully.
+      - build  # Only run if "build" workflow has finished successfully.
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
