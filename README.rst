@@ -4,8 +4,8 @@ covid-shared
 .. image:: https://badge.fury.io/py/covid-shared.svg
     :target: https://badge.fury.io/py/covid-shared
 
-.. image:: https://github.com/ihmeuw/covid-shared/workflows/covid-shared%20CI/badge.svg?branch=master
-    :target: https://github.com/ihmeuw/covid-shared/workflows/covid-shared%20CI
+.. image:: https://github.com/ihmeuw/covid-shared/workflows/build/badge.svg?branch=master
+    :target: https://github.com/ihmeuw/covid-shared/workflows/build
 
 .. image:: https://zenodo.org/badge/255461232.svg
    :target: https://zenodo.org/badge/latestdoi/255461232

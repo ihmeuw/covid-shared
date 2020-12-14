@@ -1,4 +1,4 @@
-name: covid-shared CI
+name: build
 
 on: [push, pull_request]
 
