@@ -1,3 +1,7 @@
+**1.0.43 - 12/14/2020**
+
+ - Switch to github actions for ci workflow.
+
 **1.0.42 - 12/11/2020**
 
  - Add path for HHS data on J drive
@@ -23,7 +27,7 @@
 **1.0.37 - 10/20/2020**
 
  - Add path for serosurvey supplemental metadata.
- 
+
  **1.0.36 - 10/19/2020**
 
  - Change CDC race/ethnicity data path (old path had truncated data).
