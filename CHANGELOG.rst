@@ -1,5 +1,9 @@
 **1.0.44 - 12/14/2020**
 
+ - Only deploy on successful test pass.
+
+**1.0.44 - 12/14/2020**
+
  - CI bugfixes
 
 **1.0.43 - 12/14/2020**
