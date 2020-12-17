@@ -1,7 +1,3 @@
-**1.0.47 - 12/16/2020**
-
- - Add visit-volume directory to paths
-
 **1.0.46 - 12/14/2020**
 
  - More CI bugfixes.
