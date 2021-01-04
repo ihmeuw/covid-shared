@@ -1,6 +1,10 @@
+**1.0.48 - 01/04/2021**
+
+ - Add SEIR diagnostics path.
+
 **1.0.47 - 12/17/2020**
 
- - Add visit-volume directory to paths
+ - Add visit-volume directory to paths.
 
 **1.0.46 - 12/14/2020**
 
@@ -12,7 +16,7 @@
 
 **1.0.44 - 12/14/2020**
 
- - CI bugfixes
+ - CI bugfixes.
 
 **1.0.43 - 12/14/2020**
 
