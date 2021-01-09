@@ -1,3 +1,7 @@
+**1.0.49 - 01/09/2021**
+
+ - Add ratio paths.
+
 **1.0.48 - 01/04/2021**
 
  - Add SEIR diagnostics path.
