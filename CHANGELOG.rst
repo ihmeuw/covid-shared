@@ -1,3 +1,7 @@
+**1.0.51 - 01/16/2021**
+
+ - Separate verbose, with_debugger, and output root, cleanup imports.
+
 **1.0.50 - 01/16/2021**
 
  - Separate mark best and production tag decorators for independent use.
