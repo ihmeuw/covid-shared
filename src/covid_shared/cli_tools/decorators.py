@@ -69,6 +69,17 @@ def add_r_singularity_option():
     return wrapper
 
 
+with_production_tag = click.option(
+    '-p', '--production-tag',
+    type=click.STRING,
+    help='Tags this run as a production run.'
+)
+with_mark_best = click.option(
+    '-b', '--mark-best',
+    is_flag=True,
+    help='Mark this run as "best"'
+)
+
 def add_output_options(default_output_root: Path):
     """
     Decorator to set CLI command options required when producing outputs.
@@ -83,17 +94,9 @@ def add_output_options(default_output_root: Path):
                   "newest uncreated version")
         )(entry_point)
 
-        entry_point = click.option(
-            '-p', '--production-tag',
-            type=click.STRING,
-            help='Tags this run as a production run.'
-        )(entry_point)
+        entry_point = with_production_tag(entry_point)
 
-        entry_point = click.option(
-            '-b', '--mark-best',
-            is_flag=True,
-            help='Mark this run as "best"'
-        )(entry_point)
+        entry_point = with_mark_best(entry_point)
 
         return entry_point
     return wrapper
