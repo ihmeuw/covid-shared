@@ -1,3 +1,7 @@
+**1.0.50 - 01/16/2021**
+
+ - Separate mark best and production tag decorators for independent use.
+
 **1.0.49 - 01/09/2021**
 
  - Add ratio paths.
