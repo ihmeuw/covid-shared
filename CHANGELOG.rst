@@ -1,3 +1,8 @@
+
+**1.0.53 - 01/21/2021**
+
+ - Remove NOAA paths
+
 **1.0.52 - 01/18/2021**
 
  - Add new infections path.
