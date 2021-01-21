@@ -1,3 +1,7 @@
+**1.0.52 - 01/21/2021**
+
+ - Remove NOAA paths
+
 **1.0.51 - 01/16/2021**
 
  - Separate verbose, with_debugger, and output root, cleanup imports.
