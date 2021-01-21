@@ -8,7 +8,6 @@ ITALY_REPO = 'https://github.com/pcm-dpc/COVID-19/archive/master.zip'
 DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
 NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
 ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
-NOAA_PM_DATA = "ftp://ftp.cdc.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surface_gauss/air.2m.gauss.2020.nc"
 CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
@@ -65,7 +64,6 @@ PRODUCTION_RUN = Path('production-runs')
 JOHNS_HOPKINS_OUTPUT_DIR_NAME = Path('johns_hopkins_repo')
 ITALY_OUTPUT_DIR_NAME = Path('italy_repo')
 NY_TIMES_OUTPUT_DIR_NAME = Path('ny_times_repo')
-NOAA_OUTPUT_DIR_NAME = Path('noaa_data')
 CDC_OUTPUT_DIR_NAME = Path('cdc_data')
 MOBILITY_OUTPUT_DIR_NAME = Path('mobility_data')
 ONEDRIVE_OUTPUT_DIR_NAME = Path('covid_onedrive')
