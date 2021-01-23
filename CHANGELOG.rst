@@ -1,4 +1,8 @@
 
+**1.0.54 - 01/23/2021**
+
+ - Update HHS path
+
 **1.0.53 - 01/21/2021**
 
  - Remove NOAA paths
