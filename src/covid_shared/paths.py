@@ -18,7 +18,7 @@ GLOBAL_SYMPTOM_SURVEY_DATA = DATA_INTAKE_J_DIR / 'symptom_survey/global'
 PULSE_SURVEY_DATA = DATA_INTAKE_J_DIR / 'pulse_survey/US Census_pulse surveys'
 SOCIAL_DISTANCING_DATA = DATA_INTAKE_J_DIR / 'social distancing'
 CFR_AGE_MAX_PLANCK_DATA = DATA_INTAKE_J_DIR / 'CFR-age/MaxPlanck'
-HHS_DATA = DATA_INTAKE_J_DIR / 'hhs/states/out'
+HHS_DATA = DATA_INTAKE_J_DIR / 'hhs'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
