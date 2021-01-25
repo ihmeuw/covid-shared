@@ -1,7 +1,10 @@
+**1.0.55 - 01/25/2021**
+
+ - Add new ratio paths.
 
 **1.0.54 - 01/23/2021**
 
- - Update HHS path
+ - Update HHS path.
 
 **1.0.53 - 01/21/2021**
 
