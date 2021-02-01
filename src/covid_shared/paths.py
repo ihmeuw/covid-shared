@@ -42,6 +42,7 @@ INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
 WEBSCRAPER_ROOT = Path('/ihme/covid-19/webscrape')
 
+VARIANT_OUTPUT_ROOT = Path('/ihme/covid-19/variant-scaleup')
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
 PNEUMONIA_OUTPUT_ROOT = Path('/ihme/covid-19/pneumonia')
 POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
