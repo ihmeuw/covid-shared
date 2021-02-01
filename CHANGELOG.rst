@@ -1,3 +1,7 @@
+**1.0.56 - 02/01/2021**
+
+ - Add variant path.
+
 **1.0.55 - 01/25/2021**
 
  - Add new ratio paths.
