@@ -19,6 +19,7 @@ PULSE_SURVEY_DATA = DATA_INTAKE_J_DIR / 'pulse_survey/US Census_pulse surveys'
 SOCIAL_DISTANCING_DATA = DATA_INTAKE_J_DIR / 'social distancing'
 CFR_AGE_MAX_PLANCK_DATA = DATA_INTAKE_J_DIR / 'CFR-age/MaxPlanck'
 HHS_DATA = DATA_INTAKE_J_DIR / 'hhs'
+VACCINE_DATA = DATA_INTAKE_J_DIR / 'vaccine'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
@@ -82,6 +83,7 @@ SOCIAL_DISTANCING_DIR_NAME = Path('social distancing')
 CFR_AGE_DIR_NAME = Path('cfr_age')
 CFR_AGE_MAX_PLANCK_DIR_NAME = Path('MaxPlanck')
 HHS_DIR_NAME = Path('hhs_data')
+VACCINE_DIR_NAME = Path('vaccine_data')
 
 LOG_DIR = Path("logs")
 LOG_FILE_NAME = Path("master_log.txt")
