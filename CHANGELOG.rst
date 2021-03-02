@@ -1,3 +1,7 @@
+**1.0.59 - 03/02/2021**
+
+ - Add Mexico CFR-age paths.
+
 **1.0.58 - 02/17/2021**
 
  - Add Vaccine path
