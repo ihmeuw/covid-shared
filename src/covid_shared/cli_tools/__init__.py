@@ -11,7 +11,8 @@ from covid_shared.cli_tools.decorators import (
     add_mobility_gpr_dependency_option,
     add_model_inputs_dependency_option,
     add_seir_covariates_dependency_option,
-    add_snapshot_dependency_option
+    add_snapshot_dependency_option,
+    validate_options_with_q
 )
 from covid_shared.cli_tools.logging import (
     LOG_FORMATS,
