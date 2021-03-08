@@ -1,3 +1,6 @@
+**1.1.0 - 03/08/2021**
+ - Add validation module with check that quick runs are not marked best or for production
+
 **1.0.59 - 03/02/2021**
 
  - Add Mexico CFR-age paths.
