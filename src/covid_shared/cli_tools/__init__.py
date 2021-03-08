@@ -12,14 +12,14 @@ from covid_shared.cli_tools.decorators import (
     add_model_inputs_dependency_option,
     add_seir_covariates_dependency_option,
     add_snapshot_dependency_option,
-    validate_options_with_q
+    validate_options_with_q,
 )
 from covid_shared.cli_tools.logging import (
     LOG_FORMATS,
     DEFAULT_LOG_MESSAGING_FORMAT,
     add_logging_sink,
     configure_logging_to_files,
-    configure_logging_to_terminal
+    configure_logging_to_terminal,
 )
 from covid_shared.cli_tools.metadata import (
     Metadata,
@@ -27,7 +27,7 @@ from covid_shared.cli_tools.metadata import (
     YamlIOMixin,
     get_function_full_argument_mapping,
     monitor_application,
-    update_with_previous_metadata
+    update_with_previous_metadata,
 )
 from covid_shared.cli_tools.run_directory import (
     get_last_stage_directory,
@@ -43,7 +43,7 @@ from covid_shared.cli_tools.run_directory import (
     mark_production,
     mark_production_explicit,
     move_link,
-    setup_directory_structure
+    setup_directory_structure,
 )
 from covid_shared.cli_tools.cleanup import (
     finish_application,
