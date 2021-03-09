@@ -22,6 +22,7 @@ HHS_DATA = DATA_INTAKE_J_DIR / 'hhs'
 VACCINE_DATA = DATA_INTAKE_J_DIR / 'vaccine'
 MEXICO_CFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'cfr-age' / 'mexico' / 'latest'
 MEXICO_HFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'hospitalization-age' / 'mexico' / 'latest'
+VARIANTS_DATA = DATA_INTAKE_J_DIR / 'GISAID'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
@@ -88,6 +89,7 @@ HHS_DIR_NAME = Path('hhs_data')
 VACCINE_DIR_NAME = Path('vaccine')
 MEXICO_CFR_AGE_DIR_NAME = Path('mexico_cfr_age')
 MEXICO_HFR_AGE_DIR_NAME = Path('mexico_hfr_age')
+VARIANTS_DIR_NAME = Path('Variants')
 
 LOG_DIR = Path("logs")
 LOG_FILE_NAME = Path("master_log.txt")
