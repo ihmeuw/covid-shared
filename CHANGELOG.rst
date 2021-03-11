@@ -1,3 +1,6 @@
+**1.1.3 - 03/11/2021**
+ - v1.1.2 did not properly deploy. Added wheel to build depenencies.
+
 **1.1.2 - 03/11/2021**
  - v1.1.1 did not properly deploy.
 
