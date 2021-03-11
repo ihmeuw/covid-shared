@@ -1,3 +1,6 @@
+**1.1.2 - 03/11/2021**
+ - v1.1.1 did not properly deploy.
+
 **1.1.1 - 03/11/2021**
  - Updated Variants data path.
 
