@@ -1,3 +1,6 @@
+**1.1.1 - 03/11/2021**
+ - Updated Variants data path.
+
 **1.1.0 - 03/08/2021**
  - Add validation module with check that quick runs are not marked best or for production
 
