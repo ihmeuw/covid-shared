@@ -1,3 +1,6 @@
+**1.2.0 - 03/12/2021**
+ - Prevent quick runs from being marked as "latest".
+
 **1.1.3 - 03/11/2021**
  - v1.1.2 did not properly deploy. Added wheel to build depenencies.
 
