@@ -88,8 +88,8 @@ def setup_directory_structure(output_root: Union[str, Path], with_production: bo
 
 
 def make_links(app_metadata: Metadata, run_directory: Path,
-               mark_as_best: bool, production_tag: Optional[str]) -> None:
-    if app_metadata['success']:
+               mark_as_best: bool, production_tag: Optional[str], quick: Optional[int] = None) -> None:
+    if app_metadata['success'] and not quick:
         mark_latest(run_directory)
 
         if mark_as_best:
@@ -100,7 +100,7 @@ def make_links(app_metadata: Metadata, run_directory: Path,
                     mark_production(run_directory, production_tag)
                 except ValueError:
                     logger.warning(f'Invalid production tag {production_tag}. Run not marked for production.'
-                                   f'Please provide production tag in format YYYY_MM_DD.')
+                                f'Please provide production tag in format YYYY_MM_DD.')
 
 
 def mark_best(run_directory: Union[str, Path]) -> None:
