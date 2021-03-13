@@ -11,7 +11,7 @@ def finish_application(
     run_directory: Path,
     mark_as_best: bool,
     production_tag: Optional[str],
-    quick: int = None
+    quick: Optional[int] = None
 ) -> None:
     """
     Every cli tool should do the following:
