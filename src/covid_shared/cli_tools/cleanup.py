@@ -10,7 +10,8 @@ def finish_application(
     app_metadata: Metadata,
     run_directory: Path,
     mark_as_best: bool,
-    production_tag: Optional[str]
+    production_tag: Optional[str],
+    quick: Optional[int] = None
 ) -> None:
     """
     Every cli tool should do the following:
@@ -30,7 +31,7 @@ def finish_application(
     run_metadata.dump(run_directory / 'metadata.yaml')
 
     # Configure latest or best symlink
-    make_links(app_metadata, run_directory, mark_as_best, production_tag)
+    make_links(app_metadata, run_directory, mark_as_best, production_tag, quick)
 
     _raise_if_exception(app_metadata)
 
