@@ -88,7 +88,7 @@ def setup_directory_structure(output_root: Union[str, Path], with_production: bo
 
 
 def make_links(app_metadata: Metadata, run_directory: Path,
-               mark_as_best: bool, production_tag: Optional[str], quick: int) -> None:
+               mark_as_best: bool, production_tag: Optional[str], quick: Optional[int] = None) -> None:
     if app_metadata['success'] and not quick:
         mark_latest(run_directory)
 
