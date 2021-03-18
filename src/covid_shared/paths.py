@@ -11,8 +11,12 @@ ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
 CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
+
+# J: drive paths
 DATA_INTAKE_J_DIR = Path('/home/j/Project/covid/data_intake')
-SEROSURVEY_SUPPLEMENTAL_DATA = DATA_INTAKE_J_DIR / 'serology/supplemental_serosurvey_metadata'
+SEROLOGY_DATA = DATA_INTAKE_J_DIR / 'serology'
+SEROSURVEY_SUPPLEMENTAL_DATA = SEROLOGY_DATA / 'supplemental_serosurvey_metadata'
+WANING_IMMUNITY_DATA = SEROLOGY_DATA / 'waning_immunity'
 US_SYMPTOM_SURVEY_DATA = DATA_INTAKE_J_DIR / 'symptom_survey/us'
 GLOBAL_SYMPTOM_SURVEY_DATA = DATA_INTAKE_J_DIR / 'symptom_survey/global'
 PULSE_SURVEY_DATA = DATA_INTAKE_J_DIR / 'pulse_survey/US Census_pulse surveys'
@@ -90,6 +94,8 @@ VACCINE_DIR_NAME = Path('vaccine')
 MEXICO_CFR_AGE_DIR_NAME = Path('mexico_cfr_age')
 MEXICO_HFR_AGE_DIR_NAME = Path('mexico_hfr_age')
 VARIANTS_DIR_NAME = Path('Variants')
+SEROLOGY_DIR_NAME = Path('serology')
+WANING_IMMUNITY_DIR_NAME = SEROLOGY_DIR_NAME / 'waning_immunity'
 
 LOG_DIR = Path("logs")
 LOG_FILE_NAME = Path("master_log.txt")
