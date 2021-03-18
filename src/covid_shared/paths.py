@@ -95,7 +95,7 @@ MEXICO_CFR_AGE_DIR_NAME = Path('mexico_cfr_age')
 MEXICO_HFR_AGE_DIR_NAME = Path('mexico_hfr_age')
 VARIANTS_DIR_NAME = Path('Variants')
 SEROLOGY_DIR_NAME = Path('serology')
-WANING_IMMUNITY_DIR_NAME = SEROLOGY_DIR_NAME / 'waning_immunity'
+WANING_IMMUNITY_DIR_NAME = Path('waning_immunity')
 
 LOG_DIR = Path("logs")
 LOG_FILE_NAME = Path("master_log.txt")
