@@ -1,3 +1,6 @@
+**1.3.0 - 03/19/2021**
+ - Add waning immunity path
+
 **1.2.0 - 03/12/2021**
  - Prevent quick runs from being marked as "latest".
 
