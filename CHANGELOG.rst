@@ -1,3 +1,6 @@
+**1.4.0 - 04/09/2021**
+ - Add modify existing and add new variants data path
+ 
 **1.3.0 - 03/19/2021**
  - Add waning immunity path
 
