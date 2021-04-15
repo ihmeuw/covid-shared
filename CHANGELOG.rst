@@ -1,4 +1,8 @@
-**1.5.0 - 04/09\\15/2021**
+**1.6.0 - 04/15/2021**
+ - Add age specific rates path
+ - Add historical model path
+ 
+**1.5.0 - 04/15/2021**
  - Add Denmark variants path
 
 **1.4.0 - 04/09/2021**
