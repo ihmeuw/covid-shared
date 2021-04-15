@@ -1,3 +1,6 @@
+**1.5.0 - 04/09\\15/2021**
+ - Add Denmark variants path
+
 **1.4.0 - 04/09/2021**
  - Add modify existing and add new variants data path
  
