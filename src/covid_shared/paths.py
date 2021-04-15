@@ -28,6 +28,7 @@ MEXICO_CFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'cfr-age' / 'mexico' / 'la
 MEXICO_HFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'hospitalization-age' / 'mexico' / 'latest'
 VARIANTS_DATA_GISAID = DATA_INTAKE_J_DIR / 'GISAID'
 VARIANTS_DATA_CDC = DATA_INTAKE_J_DIR / 'variants' / 'CDC'
+VARIANTS_DATA_DENMARK = DATA_INTAKE_J_DIR / 'variants' / 'Denmark'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
@@ -96,6 +97,7 @@ MEXICO_CFR_AGE_DIR_NAME = Path('mexico_cfr_age')
 MEXICO_HFR_AGE_DIR_NAME = Path('mexico_hfr_age')
 VARIANTS_DIR_NAME = Path('Variants')
 VARIANTS_CDC_DIR_NAME = VARIANTS_DIR_NAME / 'CDC'
+VARIANTS_DENMARK_DIR_NAME = VARIANTS_DIR_NAME / 'Denmark'
 SEROLOGY_DIR_NAME = Path('serology')
 WANING_IMMUNITY_DIR_NAME = Path('waning_immunity')
 
