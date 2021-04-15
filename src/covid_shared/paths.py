@@ -51,6 +51,8 @@ PAST_INFECTIONS_ROOT = Path('/ihme/covid-19/past-infections')
 INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
 WEBSCRAPER_ROOT = Path('/ihme/covid-19/webscrape')
+HISTORICAL_MODEL_ROOT = Path('/ihme/covid-19/historical-model')
+AGE_SPECIFIC_RATES_ROOT = Path('/ihme/covid-19/age-specific-rates')
 
 VARIANT_OUTPUT_ROOT = Path('/ihme/covid-19/variant-scaleup')
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
