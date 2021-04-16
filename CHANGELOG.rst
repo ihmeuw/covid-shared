@@ -1,3 +1,7 @@
+**1.7.0 - 04/16/2021**
+ - Add /Variants/ path
+ - Remove paths to /Variants/ subfolders
+
 **1.6.0 - 04/15/2021**
  - Add age specific rates path
  - Add historical model path
