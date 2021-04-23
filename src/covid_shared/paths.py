@@ -27,10 +27,6 @@ MEXICO_HFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'hospitalization-age' / 'm
 VARIANTS_DATA_GISAID = DATA_INTAKE_J_DIR / 'GISAID'
 VARIANTS_DATA = DATA_INTAKE_J_DIR / 'variants'
 
-# L: drive paths
-SYMPTOM_SURVEY_L_DIR = Path('/ihme/limited_use/LIMITED_USE/PROJECT_FOLDERS/COVID19_SYMPTOM_SURVEY')
-US_SYMPTOM_SURVEY_DAILY_DATA = SYMPTOM_SURVEY_L_DIR / 'US_CMU/data/processed/d_'
-GLOBAL_SYMPTOM_SURVEY_DAILY_DATA = SYMPTOM_SURVEY_L_DIR / 'GLOBAL_UMD/data/processed/d_'
 
 # Shared paths
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
@@ -55,6 +51,7 @@ SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
 WEBSCRAPER_ROOT = Path('/ihme/covid-19/webscrape')
 HISTORICAL_MODEL_ROOT = Path('/ihme/covid-19/historical-model')
 AGE_SPECIFIC_RATES_ROOT = Path('/ihme/covid-19/age-specific-rates')
+SYMPTOM_SURVEY_ROOT = Path('/ihme/covid-19/symptom-survey-data')
 
 VARIANT_OUTPUT_ROOT = Path('/ihme/covid-19/variant-scaleup')
 MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
@@ -88,8 +85,6 @@ OPEN_COVID19_OUTPUT_DIR_NAME = Path('open_covid19_working_group')
 SEROSURVEY_OUTPUT_DIR_NAME = Path('serosurvey_data')
 SEROSURVEY_SUPPLEMENTAL_OUTPUT_DIR_NAME = Path('supplemental_serosurvey_metadata')
 SYMPTOM_SURVEY_OUTPUT_DIR_NAME = Path('symptom_survey')
-US_SYMPTOM_SURVEY_OUTPUT_DIR_NAME = SYMPTOM_SURVEY_OUTPUT_DIR_NAME / 'us'
-GLOBAL_SYMPTOM_SURVEY_OUTPUT_DIR_NAME = SYMPTOM_SURVEY_OUTPUT_DIR_NAME / 'global'
 PULSE_SURVEY_OUTPUT_DIR_NAME = Path('pulse_survey')
 PULSE_SURVEY_US_CENSUS_OUTPUT_DIR_NAME = Path('US Census_pulse surveys')
 SOCIAL_DISTANCING_DIR_NAME = Path('social distancing')
