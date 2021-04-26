@@ -1,3 +1,7 @@
+**1.8.0 - 04/26/2021**
+ - Add new symptom survey data path
+ - Remove old symptom survey data paths
+
 **1.7.0 - 04/16/2021**
  - Add /Variants/ path
  - Remove paths to /Variants/ subfolders
