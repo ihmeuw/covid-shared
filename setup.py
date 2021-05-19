@@ -28,6 +28,11 @@ if __name__ == "__main__":
         'sphinx',
     ]
 
+    internal_requirements = [
+        'jobmon>=2.2.1,<2.3',
+        'db_queries==23.*',
+    ]
+
     setup(
         name=about['__title__'],
         version=about['__version__'],
