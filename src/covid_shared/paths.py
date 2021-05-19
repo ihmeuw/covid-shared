@@ -7,7 +7,6 @@ JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.
 DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
 NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
 ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
-CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
 
