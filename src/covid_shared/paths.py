@@ -4,7 +4,6 @@ from datetime import datetime
 
 # Input data paths
 JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
-ITALY_REPO = 'https://github.com/pcm-dpc/COVID-19/archive/master.zip'
 DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
 NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
 ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
@@ -76,7 +75,6 @@ LATEST_LINK = Path('latest')
 PRODUCTION_RUN = Path('production-runs')
 
 JOHNS_HOPKINS_OUTPUT_DIR_NAME = Path('johns_hopkins_repo')
-ITALY_OUTPUT_DIR_NAME = Path('italy_repo')
 NY_TIMES_OUTPUT_DIR_NAME = Path('ny_times_repo')
 CDC_OUTPUT_DIR_NAME = Path('cdc_data')
 MOBILITY_OUTPUT_DIR_NAME = Path('mobility_data')
