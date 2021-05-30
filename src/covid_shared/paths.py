@@ -4,11 +4,9 @@ from datetime import datetime
 
 # Input data paths
 JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
-ITALY_REPO = 'https://github.com/pcm-dpc/COVID-19/archive/master.zip'
 DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
 NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
 ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
-CITYMAPPER_MOBILITY_TEMPLATE = "https://cdn.citymapper.com/data/cmi/Citymapper_Mobility_Index_{DATE}.csv"
 OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
 CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
 
@@ -40,13 +38,7 @@ SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
 MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
 VISIT_VOLUME_ROOT = Path('/ihme/covid-19/visit-volume/')
 MORTALITY_RATIO_ROOT = Path('/ihme/covid-19/mortality-ratio')
-INFECTION_FATALITY_RATIO_ROOT = Path('/ihme/covid-19/infection-fatality-ratio')
-INFECTION_HOSPITALIZATION_RATIO_ROOT = Path('/ihme/covid-19/infection-hospitalization-ratio')
-INFECTION_DETECTION_RATE_ROOT = Path('/ihme/covid-19/infection-detection-rate')
-HOSPITAL_DEATH_RATIO_ROOT = Path('/ihme/covid-19/hospitalization-death-ratio')
-DEATHS_SPLINE_OUTPUT_ROOT = Path('/ihme/covid-19/deaths-outputs/')
 PAST_INFECTIONS_ROOT = Path('/ihme/covid-19/past-infections')
-INFECTIONATOR_OUTPUTS = Path('/ihme/covid-19/seir-inputs')
 SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
 WEBSCRAPER_ROOT = Path('/ihme/covid-19/webscrape')
 HISTORICAL_MODEL_ROOT = Path('/ihme/covid-19/historical-model')
@@ -68,6 +60,7 @@ SEIR_FORECAST_OUTPUTS = Path('/ihme/covid-19/seir-forecast')
 SEIR_FINAL_OUTPUTS = Path('/ihme/covid-19/seir-outputs')
 SEIR_DIAGNOSTICS_OUTPUTS = Path('/ihme/covid-19/seir-diagnostics')
 
+ARCHIVE_ROOT = Path('/ihme/covid-19-2/archive')
 
 # Shared file names
 METADATA_FILE_NAME = Path('metadata.yaml')
@@ -76,7 +69,6 @@ LATEST_LINK = Path('latest')
 PRODUCTION_RUN = Path('production-runs')
 
 JOHNS_HOPKINS_OUTPUT_DIR_NAME = Path('johns_hopkins_repo')
-ITALY_OUTPUT_DIR_NAME = Path('italy_repo')
 NY_TIMES_OUTPUT_DIR_NAME = Path('ny_times_repo')
 CDC_OUTPUT_DIR_NAME = Path('cdc_data')
 MOBILITY_OUTPUT_DIR_NAME = Path('mobility_data')
