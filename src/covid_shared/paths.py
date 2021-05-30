@@ -25,49 +25,77 @@ MEXICO_HFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'hospitalization-age' / 'm
 VARIANTS_DATA_GISAID = DATA_INTAKE_J_DIR / 'GISAID'
 VARIANTS_DATA = DATA_INTAKE_J_DIR / 'variants'
 
-
-# Shared paths
+##################
+# Executor paths #
+##################
 EXEC_R_SCRIPT_PATH = Path('/share/singularity-images/lbd/shells/singR.sh')
 R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/lbd/releases/lbd_full_20200128.simg')
 
-RCLONE_CONFIG_PATH = Path('/ihme/covid-19/.config/rclone/rclone.conf')
+################
+# Shared paths #
+################
+# Concrete share drive root
+COVID_19_2 = Path('/ihme/covid-19-2')
+ARCHIVE_ROOT = COVID_19_2 / 'archive'
 
-UNVERSIONED_INPUTS_ROOT = Path('/ihme/covid-19/unversioned-inputs')
-STATIC_DATA_INPUTS_ROOT = Path('/ihme/covid-19/static-data')
-SNAPSHOT_ROOT = Path('/ihme/covid-19/snapshot-data/')
-MODEL_INPUTS_ROOT = Path('/ihme/covid-19/model-inputs/')
-VISIT_VOLUME_ROOT = Path('/ihme/covid-19/visit-volume/')
-MORTALITY_RATIO_ROOT = Path('/ihme/covid-19/mortality-ratio')
-PAST_INFECTIONS_ROOT = Path('/ihme/covid-19/past-infections')
-SHAPEFILE_ROOT = Path('/ihme/covid-19/shapefiles')
-WEBSCRAPER_ROOT = Path('/ihme/covid-19/webscrape')
-HISTORICAL_MODEL_ROOT = Path('/ihme/covid-19/historical-model')
-AGE_SPECIFIC_RATES_ROOT = Path('/ihme/covid-19/age-specific-rates')
-SYMPTOM_SURVEY_ROOT = Path('/ihme/covid-19/symptom-survey-data')
+# Main share drive root. This is a symlink farm for COVID_19_2.
+# All paths should point here.
+COVID_19 = Path('/ihme/covid-19')
 
-VARIANT_OUTPUT_ROOT = Path('/ihme/covid-19/variant-scaleup')
-MASK_USE_OUTPUT_ROOT = Path('/ihme/covid-19/mask-use-outputs')
-PNEUMONIA_OUTPUT_ROOT = Path('/ihme/covid-19/pneumonia')
-POPULATION_DENSITY_OUTPUT_ROOT = Path('/ihme/covid-19/population-density')
-MOBILITY_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/mobility-covariate')
+# Shared config for running rclone on the IHME OneDrive
+RCLONE_CONFIG_PATH = COVID_19 / '.config' / 'rclone' / 'rclone.conf'
+
+# Top level directories.  These represent, mostly, outputs of pipeline stages.
+# Keep them in alphabetical order.
+AGE_SPECIFIC_RATES_ROOT = COVID_19 / 'age-specific-rates'
+DURATIONS_ROOT = COVID_19 / 'durations'
+EXCESS_MORTALITY_ROOT = COVID_19 / 'excess-mortality'
+GBD_ROOT = COVID_19 / 'gbd'
+HISTORICAL_MODEL_ROOT = COVID_19 / 'historical-model'
+MANDATES_ROOT = COVID_19 / 'mandates'
+MASK_USE_OUTPUT_ROOT = COVID_19 / 'mask-use-outputs'
+MOBILITY_COVARIATES_OUTPUT_ROOT = COVID_19 / 'mobility-covariate'
 MOBILITY_COVARIATES_GPR_OUTPUT_ROOT = MOBILITY_COVARIATES_OUTPUT_ROOT / 'gpr_outputs'
-TESTING_OUTPUT_ROOT = Path('/ihme/covid-19/testing-outputs')
-VACCINE_COVERAGE_OUTPUT_ROOT = Path('/ihme/covid-19/vaccine-coverage')
-SEIR_COVARIATES_OUTPUT_ROOT = Path('/ihme/covid-19/seir-covariates')
+MODEL_INPUTS_ROOT = COVID_19 / 'model-inputs'
+MORTALITY_AGE_PATTERN_ROOT = COVID_19 / 'mortality-age-pattern'
+MORTALITY_RATIO_ROOT = COVID_19 / 'mortality-ratio'
+PAST_INFECTIONS_ROOT = COVID_19 / 'past-infections'
+PNEUMONIA_OUTPUT_ROOT = COVID_19 / 'pneumonia'
+POPULATION_DENSITY_OUTPUT_ROOT = COVID_19 / 'population-density'
+RESULTRON_ROOT = COVID_19 / 'resultron'
+SEIR_COVARIATE_PRIORS_ROOT = COVID_19 / 'seir-covariate-priors'
+SEIR_COVARIATES_OUTPUT_ROOT = COVID_19 / 'seir-covariates'
+SEIR_DIAGNOSTICS_OUTPUTS = COVID_19 / 'seir-diagnostics'
+SEIR_FORECAST_OUTPUTS = COVID_19 / 'seir-forecast'
+SEIR_FINAL_OUTPUTS = COVID_19 / 'seir-outputs'
+SEIR_PARAMETERS_OUTPUTS = COVID_19 / 'seir-parameters'
+SEIR_PIPELINE_OUTPUTS = COVID_19 / 'seir-pipeline-outputs'
+SEIR_REGRESSION_OUTPUTS = COVID_19 / 'seir-regression'
+SHAPEFILE_ROOT = COVID_19 / 'shapefiles'
+SNAPSHOT_ROOT = COVID_19 / 'snapshot-data'
+STATIC_DATA_INPUTS_ROOT = COVID_19 / 'static-data'
+SYMPTOM_SURVEY_ROOT = COVID_19 / 'symptom-survey-data'
+TESTING_OUTPUT_ROOT = COVID_19 / 'testing-outputs'
+UNVERSIONED_INPUTS_ROOT = COVID_19 / 'unversioned-inputs'
+VACCINE_COVERAGE_OUTPUT_ROOT = COVID_19 / 'vaccine-coverage'
+VARIANT_OUTPUT_ROOT = COVID_19 / 'variant-scaleup'
+VISIT_VOLUME_ROOT = COVID_19 / 'visit-volume/'
+WEBSCRAPER_ROOT = COVID_19 / 'webscrape'
 
-SEIR_REGRESSION_OUTPUTS = Path('/ihme/covid-19/seir-regression')
-SEIR_FORECAST_OUTPUTS = Path('/ihme/covid-19/seir-forecast')
-SEIR_FINAL_OUTPUTS = Path('/ihme/covid-19/seir-outputs')
-SEIR_DIAGNOSTICS_OUTPUTS = Path('/ihme/covid-19/seir-diagnostics')
-
-ARCHIVE_ROOT = Path('/ihme/covid-19-2/archive')
-
-# Shared file names
+######################################
+# Shared file and subdirectory names #
+######################################
 METADATA_FILE_NAME = Path('metadata.yaml')
+
+LOG_DIR = Path("logs")
+LOG_FILE_NAME = Path("master_log.txt")
+DETAILED_LOG_FILE_NAME = Path("master_log.json")
+
 BEST_LINK = Path('best')
 LATEST_LINK = Path('latest')
 PRODUCTION_RUN = Path('production-runs')
 
+# ???
 JOHNS_HOPKINS_OUTPUT_DIR_NAME = Path('johns_hopkins_repo')
 NY_TIMES_OUTPUT_DIR_NAME = Path('ny_times_repo')
 CDC_OUTPUT_DIR_NAME = Path('cdc_data')
@@ -89,10 +117,6 @@ MEXICO_HFR_AGE_DIR_NAME = Path('mexico_hfr_age')
 VARIANTS_DIR_NAME = Path('Variants')
 SEROLOGY_DIR_NAME = Path('serology')
 WANING_IMMUNITY_DIR_NAME = Path('waning_immunity')
-
-LOG_DIR = Path("logs")
-LOG_FILE_NAME = Path("master_log.txt")
-DETAILED_LOG_FILE_NAME = Path("master_log.json")
 
 
 def latest_production_snapshot_path():
