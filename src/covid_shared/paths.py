@@ -60,6 +60,7 @@ SEIR_FORECAST_OUTPUTS = Path('/ihme/covid-19/seir-forecast')
 SEIR_FINAL_OUTPUTS = Path('/ihme/covid-19/seir-outputs')
 SEIR_DIAGNOSTICS_OUTPUTS = Path('/ihme/covid-19/seir-diagnostics')
 
+ARCHIVE_ROOT = Path('/ihme/covid-19-2/archive')
 
 # Shared file names
 METADATA_FILE_NAME = Path('metadata.yaml')
