@@ -51,7 +51,8 @@ if __name__ == "__main__":
         install_requires=install_requirements,
         extras_require={
             'test': test_requirements,
-            'dev': test_requirements + doc_requirements,
+            'internal': internal_requirements,
+            'dev': test_requirements + doc_requirements + internal_requirements,
             'docs': doc_requirements
         },
 
