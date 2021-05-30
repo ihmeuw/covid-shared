@@ -121,7 +121,6 @@ To our package, we'll add a new file called `my_task.py`
 Our task should have something like the following structure
 
 .. code-block:: python
-   :caption: my_task1.py
 
    import click
    from covid_shared import cli_tools
@@ -168,7 +167,6 @@ In order to make your commands runnable when you install the package, we need to
 update the `setup.py` to include the entry points.
 
 .. code-block:: python
-   :caption: setup.py
 
     import os
 
@@ -257,7 +255,6 @@ Next we'll add another module to our package called `workflow.py`
 in which we'll use the tools defined in this subpackage.
 
 .. code-block:: python
-   :caption: workflow.py
 
    import shutil
    from typing import NamedTuple
@@ -430,7 +427,6 @@ Next we'll write the application main to build the workflow.  We'll just put it 
 
 
 .. code-block:: python
-   :caption: main.py
 
    from covid_shared import cli_tools, ihme_deps
    from loguru import logger
@@ -490,7 +486,6 @@ tooling.  We'll stick this in `cli.py`.
        ...your package metadata files...
 
 .. code-block:: python
-   :caption: cli.py
 
    import click
    from covid_shared import cli_tools, paths
@@ -528,7 +523,6 @@ tooling.  We'll stick this in `cli.py`.
 We'll also need to update our `setup.py` to include the new entry point:
 
 .. code-block:: python
-   :caption: setup.py
 
     import os
 
