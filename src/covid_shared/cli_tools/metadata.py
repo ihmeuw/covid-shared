@@ -167,6 +167,28 @@ def monitor_application(func: types.FunctionType, logger_: Any, with_debugger: b
     return _wrapped
 
 
+def handle_exceptions(func: Callable, logger_: Any, with_debugger: bool) -> Callable:
+    """Drops a user into an interactive debugger if func raises an error."""
+
+    @functools.wraps(func)
+    def wrapped(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except (BdbQuit, KeyboardInterrupt):
+            raise
+        except Exception as e:
+            logger.exception("Uncaught exception {}".format(e))
+            if with_debugger:
+                import pdb
+                import traceback
+                traceback.print_exc()
+                pdb.post_mortem()
+            else:
+                raise
+
+    return wrapped
+
+
 def update_with_previous_metadata(run_metadata: RunMetadata, input_root: Path) -> RunMetadata:
     """Convenience function for updating metadata from an input source."""
     key = str(input_root.resolve()).replace(' ', '_').replace('-', '_').lower() + '_metadata'
