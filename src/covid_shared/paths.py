@@ -47,6 +47,7 @@ RCLONE_CONFIG_PATH = COVID_19 / '.config' / 'rclone' / 'rclone.conf'
 
 # Top level directories.  These represent, mostly, outputs of pipeline stages.
 # Keep them in alphabetical order.
+# TODO: This should definitely be in a container.
 AGE_SPECIFIC_RATES_ROOT = COVID_19 / 'age-specific-rates'
 DURATIONS_ROOT = COVID_19 / 'durations'
 EXCESS_MORTALITY_ROOT = COVID_19 / 'excess-mortality'
