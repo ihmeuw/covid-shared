@@ -1,6 +1,6 @@
 """Primitives for construction jobmon workflows."""
 import abc
-from pathlib import  Path
+from pathlib import Path
 from typing import Dict, Type, TypeVar
 
 from covid_shared import paths
