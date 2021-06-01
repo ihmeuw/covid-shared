@@ -1,3 +1,9 @@
+**1.9.0 - 06/01/2021**
+ - Add exception handler utility to metadata tools.
+ - Add wrapper functions for IHME internal dependencies.
+ - Drop several internal and external paths that were no longer being used.
+ - Add tools for building jobmon workflows and a tutorial for use.
+
 **1.8.0 - 04/26/2021**
  - Add new symptom survey data path
  - Remove old symptom survey data paths
