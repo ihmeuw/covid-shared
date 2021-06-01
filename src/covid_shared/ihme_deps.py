@@ -5,6 +5,9 @@ to prevent CI failures at import time.
 
 """
 import importlib
+from pathlib import Path
+
+import pandas as pd
 
 
 def _lazy_import_callable(module_path: str, object_name: str):
@@ -29,6 +32,19 @@ try:
 except ModuleNotFoundError:
     get_location_hierarchy_by_version = _lazy_import_callable('db_queries.api.internal',
                                                               'get_location_hierarchy_by_version')
+
+
+def load_location_hierarchy(location_set_version_id: int = None,
+                            location_file: Path = None):
+    assert ((location_set_version_id and not location_file)
+            or (not location_set_version_id and location_file))
+
+    if location_set_version_id:
+        return get_location_hierarchy_by_version(
+            location_set_version_id=location_set_version_id,
+        )
+    else:
+        return pd.read_csv(location_file)
 
 try:
     from jobmon.client.api import (
