@@ -24,6 +24,7 @@ MEXICO_CFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'cfr-age' / 'mexico' / 'la
 MEXICO_HFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'hospitalization-age' / 'mexico' / 'latest'
 VARIANTS_DATA_GISAID = DATA_INTAKE_J_DIR / 'GISAID'
 VARIANTS_DATA = DATA_INTAKE_J_DIR / 'variants'
+GOOGLE_MOBILITY_DATA = DATA_INTAKE_J_DIR / 'mobility' / 'google'
 
 ##################
 # Executor paths #
