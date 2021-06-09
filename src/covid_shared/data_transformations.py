@@ -26,11 +26,14 @@ def make_round_trip_invariant(cumulative_time_series: pd.Series) -> pd.Series:
         an invariant transformation.
 
     """
+    # Handling for series with no names.
     name = cumulative_time_series.name if cumulative_time_series.name else 'value'
     cumulative_time_series = cumulative_time_series.rename(name)
 
+    # Drop nulls as advertised.
     data = cumulative_time_series.dropna()
 
+    # Prepend zeros only for locations that don't have a leading zero.
     non_zero_data = data.loc[data != 0.]
     min_date = non_zero_data.reset_index().groupby('location_id').date.min()
     prepend_date = min_date - pd.Timedelta(days=1)
@@ -39,6 +42,7 @@ def make_round_trip_invariant(cumulative_time_series: pd.Series) -> pd.Series:
     prepend = pd.Series(0., index=prepend_idx, name=name)
     data = data.append(prepend).sort_index()
 
+    # Finally, do interpolation for missing interior points.
     loc_ids = data.reset_index().location_id.unique()
     final_series = []
     for loc_id in loc_ids:
@@ -49,4 +53,6 @@ def make_round_trip_invariant(cumulative_time_series: pd.Series) -> pd.Series:
              .reset_index())
         s['location_id'] = loc_id
         final_series.append(s.set_index(['location_id', 'date'])[name])
-    return pd.concat(final_series).rename(cumulative_time_series.name).sort_index()
+    final_series = pd.concat(final_series).rename(cumulative_time_series.name).sort_index()
+
+    return final_series
