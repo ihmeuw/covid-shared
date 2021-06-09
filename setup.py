@@ -16,7 +16,9 @@ if __name__ == "__main__":
     install_requirements = [
         'loguru',
         'click',
-        'pyyaml'
+        'numpy',
+        'pandas',
+        'pyyaml',
     ]
 
     test_requirements = [
