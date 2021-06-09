@@ -26,6 +26,7 @@ from covid_shared.cli_tools.metadata import (
     YamlIOMixin,
     get_function_full_argument_mapping,
     monitor_application,
+    handle_exceptions,
     update_with_previous_metadata,
 )
 from covid_shared.cli_tools.run_directory import (

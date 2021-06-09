@@ -1,4 +1,22 @@
-**1.5.0 - 04/09\\15/2021**
+**1.9.0 - 06/01/2021**
+ - Add exception handler utility to metadata tools.
+ - Add wrapper functions for IHME internal dependencies.
+ - Drop several internal and external paths that were no longer being used.
+ - Add tools for building jobmon workflows and a tutorial for use.
+
+**1.8.0 - 04/26/2021**
+ - Add new symptom survey data path
+ - Remove old symptom survey data paths
+
+**1.7.0 - 04/16/2021**
+ - Add /Variants/ path
+ - Remove paths to /Variants/ subfolders
+
+**1.6.0 - 04/15/2021**
+ - Add age specific rates path
+ - Add historical model path
+ 
+**1.5.0 - 04/15/2021**
  - Add Denmark variants path
 
 **1.4.0 - 04/09/2021**
