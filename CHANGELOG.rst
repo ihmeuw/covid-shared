@@ -1,3 +1,6 @@
+**1.10.0 - 06/11/2021**
+ - Remove mortality ratio root.
+
 **1.9.0 - 06/01/2021**
  - Add exception handler utility to metadata tools.
  - Add wrapper functions for IHME internal dependencies.
