@@ -1,5 +1,8 @@
-**1.10.0 - 06/11/2021**
+**1.11.0 - 06/11/2021**
  - Remove mortality ratio root.
+
+**1.10.0 - 06/04/2021**
+ - Added J:drive path for Google mobility data 
 
 **1.9.0 - 06/01/2021**
  - Add exception handler utility to metadata tools.
