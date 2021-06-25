@@ -11,7 +11,6 @@ def validate_options_with_q(quick: int, mark_best: bool, production_tag: str):
 
 def ensure_archive_access():
     """ Check that node includes archive access """
-    breakpoint()
     hostname = os.getenv('HOSTNAME')
     if 'archive' not in hostname:
         raise RuntimeError(f"Snapshot needs snfs access (currently on {hostname}); include '-l archive=TRUE' in your login request")
