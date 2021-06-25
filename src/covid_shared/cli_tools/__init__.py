@@ -50,4 +50,5 @@ from covid_shared.cli_tools.cleanup import (
 )
 from covid_shared.cli_tools.validation import (
     validate_options_with_q,
+    ensure_archive_access,
 )
