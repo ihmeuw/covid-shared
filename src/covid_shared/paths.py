@@ -2,30 +2,6 @@
 from pathlib import Path
 from datetime import datetime
 
-# Input data paths
-JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
-DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
-NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
-ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
-OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
-CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
-
-# J: drive paths
-DATA_INTAKE_J_DIR = Path('/home/j/Project/covid/data_intake')
-SEROLOGY_DATA = DATA_INTAKE_J_DIR / 'serology'
-SEROSURVEY_SUPPLEMENTAL_DATA = SEROLOGY_DATA / 'supplemental_serosurvey_metadata'
-WANING_IMMUNITY_DATA = SEROLOGY_DATA / 'waning_immunity'
-PULSE_SURVEY_DATA = DATA_INTAKE_J_DIR / 'pulse_survey/US Census_pulse surveys'
-SOCIAL_DISTANCING_DATA = DATA_INTAKE_J_DIR / 'social distancing'
-CFR_AGE_MAX_PLANCK_DATA = DATA_INTAKE_J_DIR / 'CFR-age/MaxPlanck'
-HHS_DATA = DATA_INTAKE_J_DIR / 'hhs'
-VACCINE_DATA = DATA_INTAKE_J_DIR / 'vaccine'
-MEXICO_CFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'cfr-age' / 'mexico' / 'latest'
-MEXICO_HFR_AGE = DATA_INTAKE_J_DIR / 'data' / 'out' / 'hospitalization-age' / 'mexico' / 'latest'
-VARIANTS_DATA_GISAID = DATA_INTAKE_J_DIR / 'GISAID'
-VARIANTS_DATA = DATA_INTAKE_J_DIR / 'variants'
-GOOGLE_MOBILITY_DATA = DATA_INTAKE_J_DIR / 'mobility' / 'google'
-
 ##################
 # Executor paths #
 ##################
@@ -50,6 +26,7 @@ RCLONE_CONFIG_PATH = COVID_19 / '.config' / 'rclone' / 'rclone.conf'
 # Keep them in alphabetical order.
 # TODO: This should definitely be in a container.
 AGE_SPECIFIC_RATES_ROOT = COVID_19 / 'age-specific-rates'
+DATA_INTAKE_ROOT = COVID_19 / 'data_intake'
 DURATIONS_ROOT = COVID_19 / 'durations'
 EXCESS_MORTALITY_ROOT = COVID_19 / 'excess-mortality'
 GBD_ROOT = COVID_19 / 'gbd'
@@ -80,6 +57,29 @@ VACCINE_COVERAGE_OUTPUT_ROOT = COVID_19 / 'vaccine-coverage'
 VARIANT_OUTPUT_ROOT = COVID_19 / 'variant-scaleup'
 VISIT_VOLUME_ROOT = COVID_19 / 'visit-volume/'
 WEBSCRAPER_ROOT = COVID_19 / 'webscrape'
+
+# Input data paths
+JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
+DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
+NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
+ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
+OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
+CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
+
+# Data intake paths
+SEROLOGY_DATA = DATA_INTAKE_ROOT / 'serology'
+SEROSURVEY_SUPPLEMENTAL_DATA = SEROLOGY_DATA / 'supplemental_serosurvey_metadata'
+WANING_IMMUNITY_DATA = SEROLOGY_DATA / 'waning_immunity'
+PULSE_SURVEY_DATA = DATA_INTAKE_ROOT / 'pulse_survey/US Census_pulse surveys'
+SOCIAL_DISTANCING_DATA = DATA_INTAKE_ROOT / 'social distancing'
+CFR_AGE_MAX_PLANCK_DATA = DATA_INTAKE_ROOT / 'CFR-age/MaxPlanck'
+HHS_DATA = DATA_INTAKE_ROOT / 'hhs'
+VACCINE_DATA = DATA_INTAKE_ROOT / 'vaccine'
+MEXICO_CFR_AGE = DATA_INTAKE_ROOT / 'data' / 'out' / 'cfr-age' / 'mexico' / 'latest'
+MEXICO_HFR_AGE = DATA_INTAKE_ROOT / 'data' / 'out' / 'hospitalization-age' / 'mexico' / 'latest'
+VARIANTS_DATA_GISAID = DATA_INTAKE_ROOT / 'GISAID'
+VARIANTS_DATA = DATA_INTAKE_ROOT / 'variants'
+GOOGLE_MOBILITY_DATA = DATA_INTAKE_ROOT / 'mobility' / 'google'
 
 ######################################
 # Shared file and subdirectory names #
