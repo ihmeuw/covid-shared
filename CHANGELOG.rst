@@ -1,3 +1,6 @@
+**1.12.0 - 07/14/2021**
+ - Change data intake J: paths to /ihme/data_intake/
+ 
 **1.11.0 - 06/11/2021**
  - Remove mortality ratio root.
 
