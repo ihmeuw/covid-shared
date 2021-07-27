@@ -1,3 +1,6 @@
+**1.13.0 - 07/27/2021**
+ - Add counterfactual paths.
+
 **1.12.0 - 07/14/2021**
  - Change data intake J: paths to /ihme/data_intake/
  
