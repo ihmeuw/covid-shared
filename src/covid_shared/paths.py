@@ -24,6 +24,8 @@ COVID_19 = Path('/ihme/covid-19')
 # Keep them in alphabetical order.
 # TODO: This should definitely be in a container.
 AGE_SPECIFIC_RATES_ROOT = COVID_19 / 'age-specific-rates'
+AIRLINE_DATA_ROOT = COVID_19 / 'airline-data'
+DATA_FIXES_ROOT = COVID_19 / 'data-fixes'
 DATA_INTAKE_ROOT = COVID_19 / 'data_intake'
 DURATIONS_ROOT = COVID_19 / 'durations'
 EXCESS_MORTALITY_ROOT = COVID_19 / 'excess-mortality'
