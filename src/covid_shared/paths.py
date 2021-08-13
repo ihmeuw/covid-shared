@@ -26,6 +26,8 @@ RCLONE_CONFIG_PATH = COVID_19 / '.config' / 'rclone' / 'rclone.conf'
 # Keep them in alphabetical order.
 # TODO: This should definitely be in a container.
 AGE_SPECIFIC_RATES_ROOT = COVID_19 / 'age-specific-rates'
+AIRLINE_DATA_ROOT = COVID_19 / 'airline-data'
+DATA_FIXES_ROOT = COVID_19 / 'data-fixes'
 DATA_INTAKE_ROOT = COVID_19 / 'data_intake'
 DURATIONS_ROOT = COVID_19 / 'durations'
 EXCESS_MORTALITY_ROOT = COVID_19 / 'excess-mortality'
@@ -60,28 +62,6 @@ VARIANT_OUTPUT_ROOT = COVID_19 / 'variant-scaleup'
 VISIT_VOLUME_ROOT = COVID_19 / 'visit-volume/'
 WEBSCRAPER_ROOT = COVID_19 / 'webscrape'
 
-# Input data paths
-JOHNS_HOPKINS_REPO = 'https://github.com/CSSEGISandData/COVID-19/archive/master.zip'
-DESCARTES_REPO = 'https://github.com/descarteslabs/DL-COVID-19/archive/master.zip'
-NY_TIMES_REPO = 'https://github.com/nytimes/covid-19-data/archive/master.zip'
-ONEDRIVE_PATH = "covid-onedrive:'COVID-19 Resource Hub'"
-OPEN_COVID19_GROUP_REPO = "https://github.com/beoutbreakprepared/nCoV2019/archive/master.zip"
-CDC_DEATHS_BY_RACE_ETHNICITY_AGE_STATE = "https://data.cdc.gov/api/views/ks3g-spdg/rows.csv?accessType=DOWNLOAD"
-
-# Data intake paths
-SEROLOGY_DATA = DATA_INTAKE_ROOT / 'serology'
-SEROSURVEY_SUPPLEMENTAL_DATA = SEROLOGY_DATA / 'supplemental_serosurvey_metadata'
-WANING_IMMUNITY_DATA = SEROLOGY_DATA / 'waning_immunity'
-PULSE_SURVEY_DATA = DATA_INTAKE_ROOT / 'pulse_survey/US Census_pulse surveys'
-SOCIAL_DISTANCING_DATA = DATA_INTAKE_ROOT / 'social distancing'
-CFR_AGE_MAX_PLANCK_DATA = DATA_INTAKE_ROOT / 'CFR-age/MaxPlanck'
-HHS_DATA = DATA_INTAKE_ROOT / 'hhs'
-VACCINE_DATA = DATA_INTAKE_ROOT / 'vaccine'
-MEXICO_CFR_AGE = DATA_INTAKE_ROOT / 'data' / 'out' / 'cfr-age' / 'mexico' / 'latest'
-MEXICO_HFR_AGE = DATA_INTAKE_ROOT / 'data' / 'out' / 'hospitalization-age' / 'mexico' / 'latest'
-VARIANTS_DATA_GISAID = DATA_INTAKE_ROOT / 'GISAID'
-VARIANTS_DATA = DATA_INTAKE_ROOT / 'variants'
-GOOGLE_MOBILITY_DATA = DATA_INTAKE_ROOT / 'mobility' / 'google'
 
 ######################################
 # Shared file and subdirectory names #
@@ -95,29 +75,6 @@ DETAILED_LOG_FILE_NAME = Path("master_log.json")
 BEST_LINK = Path('best')
 LATEST_LINK = Path('latest')
 PRODUCTION_RUN = Path('production-runs')
-
-# ???
-JOHNS_HOPKINS_OUTPUT_DIR_NAME = Path('johns_hopkins_repo')
-NY_TIMES_OUTPUT_DIR_NAME = Path('ny_times_repo')
-CDC_OUTPUT_DIR_NAME = Path('cdc_data')
-MOBILITY_OUTPUT_DIR_NAME = Path('mobility_data')
-ONEDRIVE_OUTPUT_DIR_NAME = Path('covid_onedrive')
-OPEN_COVID19_OUTPUT_DIR_NAME = Path('open_covid19_working_group')
-SEROSURVEY_OUTPUT_DIR_NAME = Path('serosurvey_data')
-SEROSURVEY_SUPPLEMENTAL_OUTPUT_DIR_NAME = Path('supplemental_serosurvey_metadata')
-SYMPTOM_SURVEY_OUTPUT_DIR_NAME = Path('symptom_survey')
-PULSE_SURVEY_OUTPUT_DIR_NAME = Path('pulse_survey')
-PULSE_SURVEY_US_CENSUS_OUTPUT_DIR_NAME = Path('US Census_pulse surveys')
-SOCIAL_DISTANCING_DIR_NAME = Path('social distancing')
-CFR_AGE_DIR_NAME = Path('cfr_age')
-CFR_AGE_MAX_PLANCK_DIR_NAME = Path('MaxPlanck')
-HHS_DIR_NAME = Path('hhs_data')
-VACCINE_DIR_NAME = Path('vaccine')
-MEXICO_CFR_AGE_DIR_NAME = Path('mexico_cfr_age')
-MEXICO_HFR_AGE_DIR_NAME = Path('mexico_hfr_age')
-VARIANTS_DIR_NAME = Path('Variants')
-SEROLOGY_DIR_NAME = Path('serology')
-WANING_IMMUNITY_DIR_NAME = Path('waning_immunity')
 
 
 def latest_production_snapshot_path():
