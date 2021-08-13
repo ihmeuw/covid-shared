@@ -19,6 +19,8 @@ ARCHIVE_ROOT = COVID_19_2 / 'archive'
 # All paths should point here.
 COVID_19 = Path('/ihme/covid-19')
 
+# Shared config for running rclone on the IHME OneDrive
+RCLONE_CONFIG_PATH = COVID_19 / '.config' / 'rclone' / 'rclone.conf'
 
 # Top level directories.  These represent, mostly, outputs of pipeline stages.
 # Keep them in alphabetical order.
