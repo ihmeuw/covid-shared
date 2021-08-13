@@ -1,3 +1,6 @@
+**1.14.0 - 07/27/2021**
+ - Remove snapshot-only paths.
+
 **1.13.0 - 07/27/2021**
  - Add counterfactual paths.
 
