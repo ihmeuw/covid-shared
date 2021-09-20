@@ -49,5 +49,5 @@ from covid_shared.cli_tools.cleanup import (
     finish_application,
 )
 from covid_shared.cli_tools.validation import (
-    validate_options_with_q,
+    validate_best_and_production_tags,
 )
