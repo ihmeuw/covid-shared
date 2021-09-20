@@ -1,3 +1,7 @@
+**1.15.0 - 09/20/2021**
+ - Unpin db-queries version.
+ - Make 'best' and production run validation more generic.
+
 **1.14.0 - 07/27/2021**
  - Remove snapshot-only paths.
 
