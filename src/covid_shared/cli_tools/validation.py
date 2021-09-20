@@ -1,6 +1,6 @@
-def validate_options_with_q(quick: int, mark_best: bool, production_tag: str):
+def validate_best_and_production_tags(modifier: bool, mark_best: bool, production_tag: str):
     """
-    Quick runs should never be marked 'best' or for production
+    Incomplete runs should never be marked 'best' or for production, eg quick, trial-run, etc
     """
-    if quick and (mark_best or production_tag):
-        raise ValueError("Cannot mark a quick snapshot as best or for production.")
+    if modifier and (mark_best or production_tag):
+        raise ValueError("Cannot mark an incomplete snapshot as best or for production.")
