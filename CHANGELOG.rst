@@ -1,5 +1,8 @@
+**1.15.2 - 11/01/2021**
+ - Add model-comparison-inputs path.
+
 **1.15.1 - 11/01/2021**
- - Add vaccine-efficacy path
+ - Add vaccine-efficacy path.
 
 **1.15.0 - 09/20/2021**
  - Unpin db-queries version.
