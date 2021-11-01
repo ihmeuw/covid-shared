@@ -1,3 +1,6 @@
+**1.15.3 - 11/01/2021**
+ - Remove vaccine-efficacy path, add waning-immunity path.
+
 **1.15.2 - 11/01/2021**
  - Add model-comparison-inputs path.
 
