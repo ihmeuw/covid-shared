@@ -1,3 +1,6 @@
+**1.15.1 - 11/01/2021**
+ - Add vaccine-efficacy path
+
 **1.15.0 - 09/20/2021**
  - Unpin db-queries version.
  - Make 'best' and production run validation more generic.
