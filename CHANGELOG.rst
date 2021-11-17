@@ -1,3 +1,6 @@
+**1.15.4 - 11/17/2021**
+ - Add several paths for waning model.
+
 **1.15.3 - 11/01/2021**
  - Remove vaccine-efficacy path, add waning-immunity path.
 
