@@ -12,12 +12,8 @@ R_SINGULARITY_IMAGE_PATH = Path('/ihme/singularity-images/lbd/releases/lbd_full_
 # Shared paths #
 ################
 # Concrete share drive root
-COVID_19_2 = Path('/ihme/covid-19-2')
-ARCHIVE_ROOT = COVID_19_2 / 'archive'
-
-# Main share drive root. This is a symlink farm for COVID_19_2.
-# All paths should point here.
 COVID_19 = Path('/ihme/covid-19')
+ARCHIVE_ROOT = COVID_19 / 'archive'
 
 # Shared config for running rclone on the IHME OneDrive
 RCLONE_CONFIG_PATH = COVID_19 / '.config' / 'rclone' / 'rclone.conf'
