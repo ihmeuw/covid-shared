@@ -6,7 +6,7 @@ from covid_shared.ihme_deps import Tool
 
 
 def get_jobmon_tool(package) -> Tool:
-    tool = Tool.create_tool(package.__name__)
+    tool = Tool(package.__name__)
     if hasattr(package, '__jobmon_tool_version__'):
         tool.active_tool_version_id = package.__jobmon_tool_version__
     else:
