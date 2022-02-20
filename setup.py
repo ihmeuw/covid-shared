@@ -30,8 +30,8 @@ if __name__ == "__main__":
     ]
 
     internal_requirements = [
-        'jobmon>=2.2.1,<2.3',
-        'db_queries>=24.4.0,<25',
+        'jobmon[ihme]==3.0.2rc2',
+        'db_queries>=25.2.0,<26',
     ]
 
     setup(

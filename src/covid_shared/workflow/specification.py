@@ -96,9 +96,9 @@ class TaskSpecification:
 
     def to_dict(self) -> Dict[str, Union[str, int]]:
         """Coerce the specification to a dict for display or write to disk."""
-        return {'max_runtime_seconds': self.max_runtime_seconds,
-                'm_mem_free': self.m_mem_free,
-                'num_cores': self.num_cores,
+        return {'runtime': self.max_runtime_seconds,
+                'memory': self.m_mem_free,
+                'cores': self.num_cores,
                 'queue': self.queue}
 
     def __repr__(self):
