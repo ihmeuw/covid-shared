@@ -105,13 +105,14 @@ class WorkflowTemplate(abc.ABC):
                 'slurm':  resources,
             }
         )
+        old_create_workflow_run = self.workflow._create_workflow_run
         def _my_create_workflow_run(*args, **kwargs):
             # Call __func__ so we don't get two copies of self.
-            client_wfr = self.workflow._create_workflow_run.__func__(*args, **kwargs)
+            client_wfr = old_create_workflow_run.__func__(*args, **kwargs)
             self.workflow.workflow_run_id = client_wfr.workflow_run_id
             return client_wfr
         self._monkey_patch_method(
-            original_method=self.workflow._create_workflow_run,
+            original_method=old_create_workflow_run,
             new_method=_my_create_workflow_run,
         )
 
