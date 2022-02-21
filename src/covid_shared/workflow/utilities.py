@@ -5,14 +5,34 @@ from covid_shared import shell_tools
 from covid_shared.ihme_deps import Tool
 
 
-def get_jobmon_tool(package) -> Tool:
-    tool = Tool(package.__name__)
-    if hasattr(package, '__jobmon_tool_version__'):
-        tool.active_tool_version_id = package.__jobmon_tool_version__
-    else:
-        raise AttributeError(f"Package {package.__name__} must define a __jobmon_tool_version__ attribute "
-                             f"in its package level namespace.")
-    return tool
+class JobmonTool:
+
+    def __init__(self, package):
+        if not hasattr(package, '__jobmon_tool_version__'):
+            raise AttributeError(
+                f"Package {package.__name__} must define a __jobmon_tool_version__ attribute "
+                f"in its package level namespace.")
+        else:
+            self._package_name = package.__name__
+            self._active_tool_version_id = package.__jobmon_tool_version__
+        self._tool = None
+
+    def lazy_init_tool(self):
+        if self._tool is None:
+            self._tool = Tool(self._package_name)
+            self._tool.active_tool_version_id = self._active_tool_version_id
+
+    def create_workflow(self, *args, **kwargs):
+        self.lazy_init_tool()
+        return self._tool.create_workflow(*args, **kwargs)
+
+    def get_task_template(self, *args, **kwargs):
+        self.lazy_init_tool()
+        return self._tool.get_task_template(*args, **kwargs)
+
+
+def get_jobmon_tool(package) -> JobmonTool:
+    return JobmonTool(package)
 
 
 def make_log_dirs(log_dir: Union[str, Path]) -> Tuple[str, str]:

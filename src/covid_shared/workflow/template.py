@@ -14,6 +14,7 @@ from covid_shared.workflow.specification import (
     WorkflowSpecification,
 )
 from covid_shared.workflow.utilities import (
+    JobmonTool,
     make_log_dirs,
 )
 
@@ -32,7 +33,7 @@ class TaskTemplate(abc.ABC):
     command_template: str
     node_args: list
     task_args: list
-    tool: Tool
+    tool: JobmonTool
 
     def __init__(self, name: str, task_specification: TaskSpecification):
         self.jobmon_template = self.tool.get_task_template(
@@ -79,7 +80,7 @@ class WorkflowTemplate(abc.ABC):
 
     """
 
-    tool: Tool
+    tool: JobmonTool
     workflow_name_template: str = None
     task_template_classes: Dict[str, Type[TTaskTemplate]]
     fail_fast: bool = True
