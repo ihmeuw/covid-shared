@@ -1,11 +1,11 @@
 """Primitives for construction jobmon workflows."""
 import abc
+import functools
 from pathlib import Path
 from typing import Dict, Type, TypeVar
 
 from covid_shared import paths
 from covid_shared.ihme_deps import (
-    Tool,
     Task,
     WorkflowRunStatus,
 )
@@ -107,11 +107,14 @@ class WorkflowTemplate(abc.ABC):
             }
         )
         old_create_workflow_run = self.workflow._create_workflow_run
+
+        @functools.wraps(old_create_workflow_run)
         def _my_create_workflow_run(*args, **kwargs):
             # Call __func__ so we don't get two copies of self.
             client_wfr = old_create_workflow_run.__func__(*args, **kwargs)
             self.workflow.workflow_run_id = client_wfr.workflow_run_id
             return client_wfr
+
         self._monkey_patch_method(
             original_method=old_create_workflow_run,
             new_method=_my_create_workflow_run,

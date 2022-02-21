@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 import sys
 import typing
@@ -7,6 +8,23 @@ from loguru import logger
 
 from covid_shared import paths
 from covid_shared.shell_tools import mkdir
+
+
+class InterceptHandler(logging.Handler):
+    def emit(self, record):
+        try:
+            level = logger.level(record.levelname).name
+        except ValueError:
+            level = record.levelno
+
+        frame, depth = logging.currentframe(), 2
+        while frame.f_code.co_filename == logging.__file__:
+            frame = frame.f_back
+            depth += 1
+
+        logger.opt(depth=depth, exception=record.exc_info).log(
+            level, record.getMessage()
+        )
 
 
 DEFAULT_LOG_MESSAGING_FORMAT = ('<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | '
@@ -30,6 +48,7 @@ def add_logging_sink(sink: Union[typing.TextIO, Path], verbose: int, colorize: b
 def configure_logging_to_terminal(verbose: int):
     """Setup logging to sys.stdout."""
     logger.remove(0)  # Clear default configuration
+    logging.basicConfig(handlers=[InterceptHandler()], level=0)
     add_logging_sink(sys.stdout, verbose, colorize=True)
 
 
