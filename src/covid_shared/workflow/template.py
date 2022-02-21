@@ -46,7 +46,7 @@ class TaskTemplate(abc.ABC):
     def get_task(self, *_, **kwargs) -> Task:
         """Resolve job arguments into a bash executable task for jobmon."""
         task = self.jobmon_template.create_task(
-            executor_parameters=self.params,
+            compute_resources=self.params,
             name=self.task_name_template.format(**kwargs),
             max_attempts=1,
             **kwargs,
