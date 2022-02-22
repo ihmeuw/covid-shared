@@ -114,6 +114,14 @@ class WorkflowTemplate(abc.ABC):
                 cluster: resources,
             }
         )
+
+        ##############
+        # GROSS HACK #
+        ##############
+        # workflow.run no longer gives back a workflow status, which means
+        # we can't get the workflow run id to log on a failure. This patches
+        # one of the internal methods that generates a workflow run to hang
+        # onto the workflow run id as an attribute of the workflow.
         old_create_workflow_run = self.workflow._create_workflow_run
 
         @functools.wraps(old_create_workflow_run)
@@ -164,7 +172,9 @@ class WorkflowTemplate(abc.ABC):
                 seconds_until_timeout=60*60*24,
             )
         except RuntimeError:
-            r = ''
+            # fail_fast now induces a runtime error instead of returning an error
+            # status, which is unexpected behavior.  Patch around this for now.
+            r = WorkflowRunStatus.ERROR
         if r != WorkflowRunStatus.DONE:
             raise RuntimeError(
                 f'Workflow failed with status {r}.\n'

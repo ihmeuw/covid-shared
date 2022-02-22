@@ -7,6 +7,14 @@ from covid_shared.ihme_deps import Tool
 
 
 class JobmonTool:
+    """Lazy initialization of the jobmon Tool.
+
+    The Task and Workflow templates both create a jobmon tool at import time.
+    This has the unfortunate side effect of talking to external services
+    before anything else happens. This wrapper class delays initialization
+    of the tool (and therefore the service communication) until runtime.
+
+    """
 
     def __init__(self, package):
         if not hasattr(package, '__jobmon_tool_version__'):
