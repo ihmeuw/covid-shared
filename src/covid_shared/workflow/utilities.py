@@ -1,4 +1,5 @@
 from pathlib import Path
+import socket
 from typing import Tuple, Union
 
 from covid_shared import shell_tools
@@ -44,3 +45,19 @@ def make_log_dirs(log_dir: Union[str, Path]) -> Tuple[str, str]:
     shell_tools.mkdir(std_err, exists_ok=True, parents=True)
 
     return str(std_out), str(std_err)
+
+
+def get_cluster_name() -> 'str':
+    hostname = socket.gethostname()
+
+    if 'slurm' in hostname:
+        cluster, submit_host_marker = 'slurm', 'slogin'
+    elif 'uge' in hostname:
+        cluster, submit_host_marker = 'buster', 'submit'
+    else:
+        raise RuntimeError('This tool must be run from an IHME cluster.')
+
+    if submit_host_marker in hostname:
+        raise RuntimeError("This tool must not be run from a submit host.")
+    return cluster
+

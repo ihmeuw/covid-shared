@@ -16,6 +16,7 @@ from covid_shared.workflow.specification import (
 from covid_shared.workflow.utilities import (
     JobmonTool,
     make_log_dirs,
+    get_cluster_name,
 )
 
 
@@ -92,6 +93,7 @@ class WorkflowTemplate(abc.ABC):
 
         stdout, stderr = make_log_dirs(Path(version) / paths.LOG_DIR)
 
+        cluster = get_cluster_name()
         resources = {
             'stdout': stdout,
             'stderr': stderr,
@@ -100,10 +102,9 @@ class WorkflowTemplate(abc.ABC):
 
         self.workflow = self.tool.create_workflow(
             name=self.workflow_name_template.format(version=version),
-            default_cluster_name='slurm',
+            default_cluster_name=cluster,
             default_compute_resources_set={
-                'buster': resources,
-                'slurm':  resources,
+                cluster: resources,
             }
         )
         old_create_workflow_run = self.workflow._create_workflow_run
