@@ -46,6 +46,9 @@ def load_location_hierarchy(location_set_version_id: int = None,
     else:
         return pd.read_csv(location_file)
 
+import sys
+sys.modules['structlog'] = sys.modules['logging']
+
 try:
     from jobmon.client.api import Tool
     from jobmon.client.task import Task

@@ -169,16 +169,16 @@ class JobmonInterceptHandler(logging.Handler):
         strategy = self._RE_EMIT
 
         if record.name == 'jobmon.client.distributor.distributor_service':
-            if 'active distributor_ids:' not in msg and 'Queued' not in msg:
-                # Couldn't filter these before without looking in the message.
-                strategy = self._FILTER
-            else:
-                # We don't want these messages, but we want what's in them.
-                if 'active distributor_ids:' in msg:
-                    self._running = str(len(msg.split(',')) - 1)
-                if 'Queued' in msg:
-                    self._queued = msg.split(' ')[1]
-                # Construct the status update.
+            # Couldn't filter these before without looking in the message.
+            strategy = self._FILTER
+            # We don't want these messages, but we want what's in them.
+            if 'Queued' in msg:
+                # Just update internal state and ignore.
+                self._queued = msg.split(' ')[1]
+            if 'active distributor_ids:' in msg:
+                self._running = str(len(msg.split(',')) - 1)
+                # This updates every 30s, which is a reasonable
+                # frequency to log the workflow status.
                 msg = f'Queued: {self._queued}, Running: {self._running}'
                 strategy = self._LIFT
 

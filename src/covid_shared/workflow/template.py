@@ -97,9 +97,9 @@ class WorkflowTemplate(abc.ABC):
 
         cluster = get_cluster_name()
         if cluster == 'slurm' and workflow_specification.queue == 'd.q':
-            logger.warning("The d.q is unavailable on the SLURM cluster. "
-                           "Swapping to the all.q")
-            workflow_specification.queue = "all.q"
+            raise RuntimeError(
+                "The d.q is unavailable on the SLURM cluster. Please update the "
+                "'workflow.queue' key in your specification and retry.")
 
         resources = {
             'stdout': stdout,
@@ -158,10 +158,13 @@ class WorkflowTemplate(abc.ABC):
 
     def run(self) -> None:
         """Execute the constructed workflow."""
-        r = self.workflow.run(
-            fail_fast=self.fail_fast,
-            seconds_until_timeout=60*60*24,
-        )
+        try:
+            r = self.workflow.run(
+                fail_fast=self.fail_fast,
+                seconds_until_timeout=60*60*24,
+            )
+        except RuntimeError:
+            r = ''
         if r != WorkflowRunStatus.DONE:
             raise RuntimeError(
                 f'Workflow failed with status {r}.\n'
