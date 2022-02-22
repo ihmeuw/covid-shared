@@ -4,6 +4,8 @@ import functools
 from pathlib import Path
 from typing import Dict, Type, TypeVar
 
+from loguru import logger
+
 from covid_shared import paths
 from covid_shared.ihme_deps import (
     Task,
@@ -94,6 +96,11 @@ class WorkflowTemplate(abc.ABC):
         stdout, stderr = make_log_dirs(Path(version) / paths.LOG_DIR)
 
         cluster = get_cluster_name()
+        if cluster == 'slurm' and workflow_specification.queue == 'd.q':
+            logger.warning("The d.q is unavailable on the SLURM cluster. "
+                           "Swapping to the all.q")
+            workflow_specification.queue = "all.q"
+
         resources = {
             'stdout': stdout,
             'stderr': stderr,
