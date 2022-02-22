@@ -1,13 +1,12 @@
 """Primitives for construction jobmon workflows."""
 import abc
+import functools
 from pathlib import Path
 from typing import Dict, Type, TypeVar
 
 from covid_shared import paths
 from covid_shared.ihme_deps import (
-    Tool,
     Task,
-    ExecutorParameters,
     WorkflowRunStatus,
 )
 from covid_shared.workflow.specification import (
@@ -15,7 +14,9 @@ from covid_shared.workflow.specification import (
     WorkflowSpecification,
 )
 from covid_shared.workflow.utilities import (
+    JobmonTool,
     make_log_dirs,
+    get_cluster_name,
 )
 
 
@@ -33,7 +34,7 @@ class TaskTemplate(abc.ABC):
     command_template: str
     node_args: list
     task_args: list
-    tool: Tool
+    tool: JobmonTool
 
     def __init__(self, name: str, task_specification: TaskSpecification):
         self.jobmon_template = self.tool.get_task_template(
@@ -47,7 +48,7 @@ class TaskTemplate(abc.ABC):
     def get_task(self, *_, **kwargs) -> Task:
         """Resolve job arguments into a bash executable task for jobmon."""
         task = self.jobmon_template.create_task(
-            executor_parameters=ExecutorParameters(**self.params),
+            compute_resources=self.params,
             name=self.task_name_template.format(**kwargs),
             max_attempts=1,
             **kwargs,
@@ -80,7 +81,7 @@ class WorkflowTemplate(abc.ABC):
 
     """
 
-    tool: Tool
+    tool: JobmonTool
     workflow_name_template: str = None
     task_template_classes: Dict[str, Type[TTaskTemplate]]
     fail_fast: bool = True
@@ -92,13 +93,48 @@ class WorkflowTemplate(abc.ABC):
 
         stdout, stderr = make_log_dirs(Path(version) / paths.LOG_DIR)
 
+        cluster = get_cluster_name()
+        resources = {
+            'stdout': stdout,
+            'stderr': stderr,
+            'project': workflow_specification.project,
+        }
+
         self.workflow = self.tool.create_workflow(
-            name=self.workflow_name_template.format(version=version)
+            name=self.workflow_name_template.format(version=version),
+            default_cluster_name=cluster,
+            default_compute_resources_set={
+                cluster: resources,
+            }
         )
-        self.workflow.set_executor(
-            project=workflow_specification.project,
-            stderr=stderr,
-            stdout=stdout,
+        old_create_workflow_run = self.workflow._create_workflow_run
+
+        @functools.wraps(old_create_workflow_run)
+        def _my_create_workflow_run(*args, **kwargs):
+            # Call __func__ so we don't get two copies of self.
+            client_wfr = old_create_workflow_run.__func__(*args, **kwargs)
+            self.workflow.workflow_run_id = client_wfr.workflow_run_id
+            return client_wfr
+
+        self._monkey_patch_method(
+            original_method=old_create_workflow_run,
+            new_method=_my_create_workflow_run,
+        )
+
+    @staticmethod
+    def _monkey_patch_method(original_method, new_method):
+        # Invoke the descriptor protocol to bind the wrapped method to the
+        # component instance.
+        rebound_method = new_method.__get__(
+            original_method.__self__,
+            original_method.__self__.__class__,
+        )
+        # Then update the instance dictionary to reflect that the wrapped
+        # method is bound to the original name.
+        setattr(
+            original_method.__self__,
+            original_method.__name__,
+            rebound_method
         )
 
     def build_task_templates(self, task_specifications: Dict[str, TaskSpecification]) -> Dict[str, TaskTemplate]:
@@ -119,8 +155,8 @@ class WorkflowTemplate(abc.ABC):
             fail_fast=self.fail_fast,
             seconds_until_timeout=60*60*24,
         )
-        if r.status != WorkflowRunStatus.DONE:
+        if r != WorkflowRunStatus.DONE:
             raise RuntimeError(
-                f'Workflow failed with status {r.status}.\n'
-                f'Workflow run id: {r.workflow_run_id}.'
+                f'Workflow failed with status {r}.\n'
+                f'Workflow run id: {self.workflow.workflow_run_id}.'
             )
