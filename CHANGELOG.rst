@@ -1,3 +1,6 @@
+**2.0.0 - 03/01/2022**
+ - Update jobmon tools and paths for slurm transition
+
 **1.15.5 - 01/20/2022**
  - Add oos path.
 
