@@ -105,11 +105,6 @@ class JobmonInterceptHandler(logging.Handler):
     _LIFT = 1
     _RE_EMIT = 2
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._queued = 0
-        self._running = 0
-
     def emit(self, record: logging.LogRecord) -> None:
         # Grab some metadata about the record.
         level, depth = self._get_level_and_depth(record)
@@ -172,14 +167,11 @@ class JobmonInterceptHandler(logging.Handler):
             # Couldn't filter these before without looking in the message.
             strategy = self._FILTER
             # We don't want these messages, but we want what's in them.
-            if 'Queued' in msg:
-                # Just update internal state and ignore.
-                self._queued = msg.split(' ')[1]
             if 'active distributor_ids:' in msg:
-                self._running = str(len(msg.split(',')) - 1)
+                queued_or_running = str(len(msg.split(',')))
                 # This updates every 30s, which is a reasonable
                 # frequency to log the workflow status.
-                msg = f'Queued: {self._queued}, Running: {self._running}'
+                msg = f'Queued or running: {queued_or_running}'
                 strategy = self._LIFT
 
         return msg, strategy
