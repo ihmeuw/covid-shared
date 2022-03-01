@@ -5,6 +5,7 @@ to prevent CI failures at import time.
 
 """
 import importlib
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -46,17 +47,23 @@ def load_location_hierarchy(location_set_version_id: int = None,
     else:
         return pd.read_csv(location_file)
 
+##############
+# GROSS HACK #
+##############
+# jobmon_uge uses structlog, a library which does an endrun around
+# python standard logging and then dumps a bunch of useless information
+# to stdout. Before we import structlog (via jobmon_uge via jobmon),
+# put the name in the system's list of imported modules as an alias
+# to the python std library logging module.
+sys.modules['structlog'] = sys.modules['logging']
+
 try:
-    from jobmon.client.api import (
-        Tool,
-        ExecutorParameters,
-    )
+    from jobmon.client.api import Tool
     from jobmon.client.task import Task
     from jobmon.client.workflow import WorkflowRunStatus
     from jobmon.exceptions import WorkflowAlreadyComplete
 except ModuleNotFoundError:
     Tool = _lazy_import_callable('jobmon.client.api', 'Tool')
-    ExecutorParameters = _lazy_import_callable('jobmon.client.api', 'ExecutorParameters')
-    Task = _lazy_import_callable('jobmon.client.task', 'BashTask')
+    Task = _lazy_import_callable('jobmon.client.task', 'Task')
     WorkflowRunStatus = _lazy_import_callable('jobmon.client.workflow', 'WorkflowRunStatus')
     WorkflowAlreadyComplete = _lazy_import_callable('jobmon.exceptions', 'WorkflowAlreadyComplete')

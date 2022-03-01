@@ -38,11 +38,23 @@ class TaskSpecification:
 
     def __init__(self, task_specification_dict: _TaskSpecDict):
         self.name = self.__class__.__name__
-        self.max_runtime_seconds: int = task_specification_dict.pop('max_runtime_seconds',
+        key_aliases_and_defaults = {
+            'max_runtime_seconds': (('max_runtime_seconds', 'runtime'), self.default_max_runtime_seconds),
+            'm_mem_free': (('m_mem_free', 'memory'), self.default_m_mem_free),
+            'num_cores': (('num_cores', 'cores'), self.default_num_cores),
+        }
+        params = {}
+        for key, (aliases, default) in key_aliases_and_defaults.items():
+            params[key] = default
+            for alias in aliases:
+                if alias in task_specification_dict:
+                    params[key] = task_specification_dict.pop(alias)
+
+        self.max_runtime_seconds = task_specification_dict.pop('max_runtime_seconds',
                                                                     self.default_max_runtime_seconds)
-        self.m_mem_free: str = task_specification_dict.pop('m_mem_free',
+        self.m_mem_free = task_specification_dict.pop('m_mem_free',
                                                            self.default_m_mem_free)
-        self.num_cores: int = task_specification_dict.pop('num_cores',
+        self.num_cores = task_specification_dict.pop('num_cores',
                                                           self.default_num_cores)
         # Workflow specification guarantees this will be present.
         self.queue = task_specification_dict.pop('queue')
@@ -96,9 +108,9 @@ class TaskSpecification:
 
     def to_dict(self) -> Dict[str, Union[str, int]]:
         """Coerce the specification to a dict for display or write to disk."""
-        return {'max_runtime_seconds': self.max_runtime_seconds,
-                'm_mem_free': self.m_mem_free,
-                'num_cores': self.num_cores,
+        return {'runtime': self.max_runtime_seconds,
+                'memory': self.m_mem_free,
+                'cores': self.num_cores,
                 'queue': self.queue}
 
     def __repr__(self):
