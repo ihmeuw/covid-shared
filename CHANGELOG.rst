@@ -1,3 +1,7 @@
+**2.1.0 - 05/23/2022**
+ - Allow for d.q. partituion on slurm
+ - Fix latest production snapshot/ETL path getter functions
+
 **2.0.1 - 03/08/2022**
  - Update jobmon dependency.
 
