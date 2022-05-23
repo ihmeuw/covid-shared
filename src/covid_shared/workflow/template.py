@@ -96,10 +96,6 @@ class WorkflowTemplate(abc.ABC):
         stdout, stderr = make_log_dirs(Path(version) / paths.LOG_DIR)
 
         cluster = get_cluster_name()
-        if cluster == 'slurm' and workflow_specification.queue == 'd.q':
-            raise RuntimeError(
-                "The d.q is unavailable on the SLURM cluster. Please update the "
-                "'workflow.queue' key in your specification and retry.")
 
         resources = {
             'stdout': stdout,
