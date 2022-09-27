@@ -1,3 +1,6 @@
+**2.0.2 - 09/27/2022**
+ - Add path for npi regression data.
+
 **2.0.1 - 03/08/2022**
  - Update jobmon dependency.
 
