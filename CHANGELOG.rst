@@ -1,3 +1,6 @@
+**2.1.1 - 09/27/2022**
+ - Add path for npi regression data.
+
 **2.1.0 - 05/23/2022**
  - Allow for d.q. partituion on slurm
  - Fix latest production snapshot/ETL path getter functions
