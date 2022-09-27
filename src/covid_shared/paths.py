@@ -1,4 +1,6 @@
 """Manages all path metadata."""
+import yaml
+
 from pathlib import Path
 from datetime import datetime
 
@@ -82,7 +84,11 @@ PRODUCTION_RUN = Path('production-runs')
 
 
 def latest_production_snapshot_path():
-    return _latest_prod_path(SNAPSHOT_ROOT)
+    return _latest_prod_source_path(SNAPSHOT_ROOT)
+
+
+def latest_production_data_fixes_path():
+    return _latest_prod_source_path(DATA_FIXES_ROOT)
 
 
 def latest_production_etl_path():
@@ -93,7 +99,20 @@ def _latest_prod_path(prefix: Path):
     prod_run_dir = prefix / PRODUCTION_RUN
     prod_runs = [d for d in prod_run_dir.iterdir()]
     sorted_runs = list(sorted(prod_runs, key=lambda p: datetime.strptime(p.stem, '%Y_%m_%d')))
-    return sorted_runs[-1]
+    return sorted_runs[-1].resolve()
+
+
+def _latest_prod_source_path(prefix: Path):
+    latest_prod_etl_path = latest_production_etl_path()
+    with open(latest_prod_etl_path / 'metadata.yaml', mode='r') as f:
+        etl_metadata = yaml.safe_load(f)
+    if prefix.stem == 'snapshot-data':
+        latest_prod_source_path = Path(etl_metadata['snapshot_metadata']['app_metadata']['run_arguments']['snapshot_directory'])
+    elif prefix.stem == 'data-fixes':
+        latest_prod_source_path = Path(etl_metadata['data_fixes_metadata']['app_metadata']['run_arguments']['snapshot_directory'])
+    else:
+        raise NotImplementedError(f"Do not know about source {prefix}.")
+    return latest_prod_source_path
 
 
 #################
