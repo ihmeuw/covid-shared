@@ -1,6 +1,6 @@
 import logging
-from pathlib import Path
 import sys
+from pathlib import Path
 from typing import TextIO, Tuple, Union
 
 from loguru import logger
@@ -8,12 +8,11 @@ from loguru import logger
 from covid_shared import paths
 from covid_shared.shell_tools import mkdir
 
-
 JOBMON_LOGGING_LEVEL = 5  # A lower level than logging.DEBUG.
 DEFAULT_LOG_MESSAGING_FORMAT = (
-    '<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | '
-    '<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> '
-    '- <level>{message}</level> - {extra}'
+    "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
+    "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> "
+    "- <level>{message}</level> - {extra}"
 )
 LOG_FORMATS = {
     # Keys are verbosity.  Specify special log formats here.
@@ -59,14 +58,14 @@ def configure_logging_to_files(output_path: Path) -> None:
     )
 
 
-def add_logging_sink(sink: Union[TextIO, Path],
-                     verbose: int,
-                     colorize: bool = False,
-                     serialize: bool = False) -> None:
+def add_logging_sink(
+    sink: Union[TextIO, Path],
+    verbose: int,
+    colorize: bool = False,
+    serialize: bool = False,
+) -> None:
     """Add a new output file handle for logging."""
-    level, message_format = LOG_FORMATS.get(
-        verbose, LOG_FORMATS[max(LOG_FORMATS.keys())]
-    )
+    level, message_format = LOG_FORMATS.get(verbose, LOG_FORMATS[max(LOG_FORMATS.keys())])
     logger.add(
         sink,
         colorize=colorize,
@@ -75,8 +74,8 @@ def add_logging_sink(sink: Union[TextIO, Path],
         serialize=serialize,
         filter={
             # Suppress logs up to the level provided.
-            'urllib3': 'WARNING',  # Uselessly (for us) noisy.
-        }
+            "urllib3": "WARNING",  # Uselessly (for us) noisy.
+        },
     )
 
 
@@ -100,6 +99,7 @@ class JobmonInterceptHandler(logging.Handler):
     so long that we'll never have an issue.
 
     """
+
     # log handling strategies
     _FILTER = 0
     _LIFT = 1
@@ -141,18 +141,20 @@ class JobmonInterceptHandler(logging.Handler):
         # higher in the call stack) and each ignore_function is
         # the function or method that is logging a message.
         drop_list = (
+            ("jobmon.client.workflow", ["add_task", "_distributor_alive"]),
             (
-                'jobmon.client.workflow',
-                ['add_task', '_distributor_alive']
-            ),
-            (
-                'jobmon.client.distributor.distributor_service',
-                ['_create_task_instance', '_keep_distributing', 'heartbeat',
-                 '_get_lost_task_instances', '_distribute_forever']
+                "jobmon.client.distributor.distributor_service",
+                [
+                    "_create_task_instance",
+                    "_keep_distributing",
+                    "heartbeat",
+                    "_get_lost_task_instances",
+                    "_distribute_forever",
+                ],
             ),
             # Finally, drop any messages from these functions
             # regardless of where they're called from.
-            (record.name, ['_send_request', 'is_5XX'])
+            (record.name, ["_send_request", "is_5XX"]),
         )
         for logger_name, ignore_functions in drop_list:
             if record.name == logger_name and record.funcName in ignore_functions:
@@ -163,15 +165,15 @@ class JobmonInterceptHandler(logging.Handler):
         msg = record.getMessage()
         strategy = self._RE_EMIT
 
-        if record.name == 'jobmon.client.distributor.distributor_service':
+        if record.name == "jobmon.client.distributor.distributor_service":
             # Couldn't filter these before without looking in the message.
             strategy = self._FILTER
             # We don't want these messages, but we want what's in them.
-            if 'active distributor_ids:' in msg:
-                queued_or_running = str(len(msg.split(',')))
+            if "active distributor_ids:" in msg:
+                queued_or_running = str(len(msg.split(",")))
                 # This updates every 30s, which is a reasonable
                 # frequency to log the workflow status.
-                msg = f'Queued or running: {queued_or_running}'
+                msg = f"Queued or running: {queued_or_running}"
                 strategy = self._LIFT
 
         return msg, strategy
@@ -194,7 +196,7 @@ def intercept_jobmon_logs(level: Union[str, int]) -> None:
     """Add a handler to all the jobmon loggers to intercept and filter/parse the messages."""
     handler = JobmonInterceptHandler(level)
     for name, logger_ in logging.Logger.manager.loggerDict.items():
-        if 'jobmon' in name and not isinstance(logger_, logging.PlaceHolder):
+        if "jobmon" in name and not isinstance(logger_, logging.PlaceHolder):
             logger_.handlers = [handler]
 
 
@@ -203,12 +205,12 @@ def list_loggers():
     root_logger = logging.getLogger()
     print("Root logger: ", root_logger)
     for h in root_logger.handlers:
-        print(f'     %s' % h)
+        print(f"     %s" % h)
 
     print("Other loggers")
     print("=============")
     for name, logger_ in logging.Logger.manager.loggerDict.items():
-        print('+ [%-20s] %s ' % (name, logger_))
+        print("+ [%-20s] %s " % (name, logger_))
         if not isinstance(logger_, logging.PlaceHolder):
             for h in logger_.handlers:
-                print('     %s' % h)
+                print("     %s" % h)

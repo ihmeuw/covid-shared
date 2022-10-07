@@ -7,19 +7,9 @@ from typing import Dict, Type, TypeVar
 from loguru import logger
 
 from covid_shared import paths
-from covid_shared.ihme_deps import (
-    Task,
-    WorkflowRunStatus,
-)
-from covid_shared.workflow.specification import (
-    TaskSpecification,
-    WorkflowSpecification,
-)
-from covid_shared.workflow.utilities import (
-    JobmonTool,
-    make_log_dirs,
-    get_cluster_name,
-)
+from covid_shared.ihme_deps import Task, WorkflowRunStatus
+from covid_shared.workflow.specification import TaskSpecification, WorkflowSpecification
+from covid_shared.workflow.utilities import JobmonTool, get_cluster_name, make_log_dirs
 
 
 class TaskTemplate(abc.ABC):
@@ -58,7 +48,7 @@ class TaskTemplate(abc.ABC):
         return task
 
 
-TTaskTemplate = TypeVar('TTaskTemplate', bound=TaskTemplate)
+TTaskTemplate = TypeVar("TTaskTemplate", bound=TaskTemplate)
 
 
 class WorkflowTemplate(abc.ABC):
@@ -91,16 +81,18 @@ class WorkflowTemplate(abc.ABC):
     def __init__(self, version: str, workflow_specification: WorkflowSpecification):
         self.version = version
         assert workflow_specification.tasks.keys() == self.task_template_classes.keys()
-        self.task_templates = self.build_task_templates(workflow_specification.task_specifications)
+        self.task_templates = self.build_task_templates(
+            workflow_specification.task_specifications
+        )
 
         stdout, stderr = make_log_dirs(Path(version) / paths.LOG_DIR)
 
         cluster = get_cluster_name()
 
         resources = {
-            'stdout': stdout,
-            'stderr': stderr,
-            'project': workflow_specification.project,
+            "stdout": stdout,
+            "stderr": stderr,
+            "project": workflow_specification.project,
         }
 
         self.workflow = self.tool.create_workflow(
@@ -108,7 +100,7 @@ class WorkflowTemplate(abc.ABC):
             default_cluster_name=cluster,
             default_compute_resources_set={
                 cluster: resources,
-            }
+            },
         )
 
         ##############
@@ -142,17 +134,17 @@ class WorkflowTemplate(abc.ABC):
         )
         # Then update the instance dictionary to reflect that the wrapped
         # method is bound to the original name.
-        setattr(
-            original_method.__self__,
-            original_method.__name__,
-            rebound_method
-        )
+        setattr(original_method.__self__, original_method.__name__, rebound_method)
 
-    def build_task_templates(self, task_specifications: Dict[str, TaskSpecification]) -> Dict[str, TaskTemplate]:
+    def build_task_templates(
+        self, task_specifications: Dict[str, TaskSpecification]
+    ) -> Dict[str, TaskTemplate]:
         """Parses task specifications into task templates."""
         task_templates = {}
         for task_name, task_specification in task_specifications.items():
-            task_templates[task_name] = self.task_template_classes[task_name](task_name, task_specification)
+            task_templates[task_name] = self.task_template_classes[task_name](
+                task_name, task_specification
+            )
         return task_templates
 
     @abc.abstractmethod
@@ -165,7 +157,7 @@ class WorkflowTemplate(abc.ABC):
         try:
             r = self.workflow.run(
                 fail_fast=self.fail_fast,
-                seconds_until_timeout=60*60*24,
+                seconds_until_timeout=60 * 60 * 24,
             )
         except RuntimeError:
             # fail_fast now induces a runtime error instead of returning an error
@@ -173,6 +165,6 @@ class WorkflowTemplate(abc.ABC):
             r = WorkflowRunStatus.ERROR
         if r != WorkflowRunStatus.DONE:
             raise RuntimeError(
-                f'Workflow failed with status {r}.\n'
-                f'Workflow run id: {self.workflow.workflow_run_id}.'
+                f"Workflow failed with status {r}.\n"
+                f"Workflow run id: {self.workflow.workflow_run_id}."
             )
