@@ -1,3 +1,8 @@
+**2.2.0 - 10/07/2022**
+ - Add parallel module for parallelizing tasks with multiprocessing.
+ - Modernize github actions.
+ - Run black and isort.
+
 **2.1.1 - 09/27/2022**
  - Add path for npi regression data.
 
