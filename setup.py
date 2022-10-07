@@ -17,7 +17,9 @@ if __name__ == "__main__":
         'click',
         'loguru',
         'pandas',
+        'pathos',
         'pyyaml',
+        'tqdm',
     ]
 
     test_requirements = [
