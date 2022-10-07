@@ -26,12 +26,6 @@ jobs:
       - name: Test
         run: |
           pytest ./tests
-      - name: Doc build
-        run: |
-          make html -C docs/ SPHINXOPTS="-W --keep-going -n"
-      - name: Doctest
-        run: |
-          make doctest -C docs/
       - name: Lint
         run: |
           pip install black==22.3.0 isort
