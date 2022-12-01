@@ -1,3 +1,6 @@
+**2.1.2 - 11/30/2022**
+ - Rectify existing paths.
+
 **2.1.1 - 09/27/2022**
  - Add path for npi regression data.
 
