@@ -1,3 +1,6 @@
+**2.2.1 - 11/30/2022**
+ - Rectify existing paths.
+
 **2.2.0 - 10/07/2022**
  - Add parallel module for parallelizing tasks with multiprocessing.
  - Modernize github actions.
