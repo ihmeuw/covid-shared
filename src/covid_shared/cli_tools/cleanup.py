@@ -11,7 +11,7 @@ def finish_application(
     run_directory: Path,
     mark_as_best: bool,
     production_tag: Optional[str],
-    quick: Optional[int] = None
+    quick: Optional[int] = None,
 ) -> None:
     """
     Every cli tool should do the following:
@@ -27,8 +27,8 @@ def finish_application(
         mark_as_best: whether to update 'best' symlink
         production_tag: what string to tag prod run, if any
     """
-    run_metadata['app_metadata'] = app_metadata.to_dict()
-    run_metadata.dump(run_directory / 'metadata.yaml')
+    run_metadata["app_metadata"] = app_metadata.to_dict()
+    run_metadata.dump(run_directory / "metadata.yaml")
 
     # Configure latest or best symlink
     make_links(app_metadata, run_directory, mark_as_best, production_tag, quick)
@@ -50,12 +50,12 @@ def _raise_if_exception(app_metadata: Metadata) -> None:
             is a dictionary with keys 'exception_type', 'exception_value',
             'exc_traceback'
     """
-    if app_metadata['success']:
+    if app_metadata["success"]:
         return
 
-    error_info = app_metadata['error_info']
-    user_interrupt = 'interrupt' in error_info
+    error_info = app_metadata["error_info"]
+    user_interrupt = "interrupt" in error_info
     if user_interrupt:
         raise KeyboardInterrupt
     else:
-        raise error_info['exception_value']
+        raise error_info["exception_value"]

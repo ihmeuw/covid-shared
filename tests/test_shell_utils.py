@@ -27,7 +27,7 @@ def test_mkdir_no_parents(mode: int, tmp_path: Path):
     tmp_path.rmdir()
     assert not tmp_path.exists()
 
-    child_dir = tmp_path / 'child'
+    child_dir = tmp_path / "child"
     with pytest.raises(FileNotFoundError):
         mkdir(child_dir, mode)
 
@@ -36,7 +36,7 @@ def test_mkdir_parents(mode: int, tmp_path: Path):
     tmp_path.rmdir()
     assert not tmp_path.exists()
 
-    child_dir = tmp_path / 'child'
+    child_dir = tmp_path / "child"
     mkdir(child_dir, mode, parents=True)
     assert tmp_path.exists()
     assert oct(tmp_path.stat().st_mode)[-3:] == oct(mode)[-3:]

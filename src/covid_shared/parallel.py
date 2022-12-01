@@ -2,9 +2,8 @@ from multiprocessing import Pool as StdLibPool
 from typing import Any, Callable, List, Optional
 
 import pandas as pd
-from pathos.multiprocessing import ProcessPool as PathosPool
 import tqdm
-
+from pathos.multiprocessing import ProcessPool as PathosPool
 
 Loader = Callable[[Any, Optional[pd.Index], int, int, bool], pd.DataFrame]
 
@@ -18,21 +17,23 @@ def is_notebook() -> bool:
         # The get_ipython function will be in the global namespace if we're in
         # an ipython-like environment (including jupyter notebooks).
         shell = get_ipython().__class__.__name__
-        if shell == 'ZMQInteractiveShell':
-            return True   # Jupyter notebook or qtconsole
-        elif shell == 'TerminalInteractiveShell':
+        if shell == "ZMQInteractiveShell":
+            return True  # Jupyter notebook or qtconsole
+        elif shell == "TerminalInteractiveShell":
             return False  # Terminal running IPython
         else:
             return False  # Other type (?)
     except NameError:
-        return False      # Probably standard Python interpreter
+        return False  # Probably standard Python interpreter
 
 
-def run_parallel(runner: Callable,
-                 arg_list: List,
-                 num_cores: int,
-                 progress_bar: bool = False,
-                 notebook_fallback: bool = False) -> List[Any]:
+def run_parallel(
+    runner: Callable,
+    arg_list: List,
+    num_cores: int,
+    progress_bar: bool = False,
+    notebook_fallback: bool = False,
+) -> List[Any]:
     """Runs a single argument function in parallel over a list of arguments.
 
     This function dodges multiprocessing if only a single process is requested to
@@ -74,9 +75,11 @@ def run_parallel(runner: Callable,
             processing_pool_class = PathosPool
 
         with processing_pool_class(num_cores) as pool:
-            result = list(tqdm.tqdm(
-                pool.imap(runner, arg_list),
-                total=len(arg_list),
-                disable=not progress_bar,
-            ))
+            result = list(
+                tqdm.tqdm(
+                    pool.imap(runner, arg_list),
+                    total=len(arg_list),
+                    disable=not progress_bar,
+                )
+            )
     return result
